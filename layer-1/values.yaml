@@ -5,7 +5,7 @@ apps:
     enabled: true
   istioGateway:
     enabled: true
-    valuesOverride:
+    valuesOverrides:
       service:
         loadBalancerIP: "192.168.128.5"
         annotations:
