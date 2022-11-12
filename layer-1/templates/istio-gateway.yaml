@@ -60,6 +60,8 @@ spec:
   tls:
   - match:
     - port: 443
+      sniHosts:
+      - "*.domingo.link"
     route:
     - destination:
         host: argocd-server.argocd.svc.cluster.local
