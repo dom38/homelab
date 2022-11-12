@@ -6,9 +6,12 @@ metadata:
 spec:
   description: Project used for all core applications
   sourceRepos:
-    - https://github.com/dom38/*
+    - "*"
   orphanedResources:
     warn: false
   destinations:
   - namespace: "*"
     server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: ''
+    kind: Namespace
