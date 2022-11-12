@@ -9,6 +9,9 @@ metadata:
 spec:
   description: Project used for all core applications
   sourceRepos:
-  {{- $.Values.coreSourceRepos | toYaml | nindent 4 }}
+    - https://github.com/dom38/*
   orphanedResources:
     warn: false
+  destinations:
+  - namespace: "*"
+    server: https://kubernetes.default.svc
