@@ -61,7 +61,7 @@ spec:
   - match:
     - port: 443
       sniHosts:
-      - "*.domingo.link"
+      - argocd.k8s.domingo.link
     route:
     - destination:
         host: argocd-server.argocd.svc.cluster.local
