@@ -1,8 +1,37 @@
 apps:
+
+  ingressNginx:
+    enabled: true
+    valuesOverrides:
+      controller:
+        dnsPolicy: ClusterFirstWithHostNet
+        hostNetwork: true
+        kind: "DaemonSet"
+        ingressClassResource:
+          name: nginx
+          enabled: true
+          default: true
+          controllerValue: "k8s.io/ingress-nginx"
+        ingressClass: nginx
+        watchIngressWithoutClass: true
+        publishService:
+          enabled: false
+        service:
+          enabled: true
+          type: ClusterIP
+        metrics:
+          enabled: false
+        serviceAccount:
+          create: true
+        admissionWebhooks:
+          enabled: false
+
   istioBase:
     enabled: true
+
   istiod:
     enabled: true
+
   istioGateway:
     enabled: true
     valuesOverrides:
