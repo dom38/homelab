@@ -58,7 +58,9 @@ spec:
     - destination:
         host: argocd-server.argocd.svc.cluster.local
   tls:
-  - route:
+  - match:
+    - port: 443
+    route:
     - destination:
         host: argocd-server.argocd.svc.cluster.local
 
