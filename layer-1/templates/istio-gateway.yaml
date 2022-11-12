@@ -39,4 +39,21 @@ spec:
         duration: 30s
   revisionHistoryLimit: 3
 
+---
+
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: argocd-virtualservice
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  hosts:
+  - argocd.k8s.dominigo.link
+  http:
+  - route:
+    - destination:
+        host: argocd-server.argocd.svc.cluster.local
+
 {{- end -}}
