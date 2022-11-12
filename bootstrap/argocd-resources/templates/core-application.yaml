@@ -12,7 +12,6 @@ spec:
     path: layer-1
     helm:
       values: |
-        {{- $.Values.coreOverrides | toYaml | nindent 8 }}
 
   destination:
     server: https://kubernetes.default.svc
