@@ -3,8 +3,7 @@ apps:
   certManager:
     enabled: true
     valuesOverrides:
-      controller:
-        installCRDs: true
+      installCRDs: true
 
   ingressNginx:
     enabled: true
