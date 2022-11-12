@@ -50,7 +50,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "10"
 spec:
   hosts:
-  - argocd.k8s.dominigo.link
+  - argocd.k8s.domingo.link
   http:
   - route:
     - destination:
