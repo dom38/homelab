@@ -1,7 +1,7 @@
 apps:
   istioBase:
-    enabled: false
+    enabled: true
   istiod:
-    enabled: false
+    enabled: true
   istioGateway:
-    enabled: false
+    enabled: true
