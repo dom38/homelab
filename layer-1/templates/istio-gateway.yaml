@@ -51,7 +51,13 @@ metadata:
 spec:
   hosts:
   - argocd.k8s.domingo.link
+  gateways:
+  - istio-ingress/istio-gateway
   http:
+  - route:
+    - destination:
+        host: argocd-server.argocd.svc.cluster.local
+  tls:
   - route:
     - destination:
         host: argocd-server.argocd.svc.cluster.local
