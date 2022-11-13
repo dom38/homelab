@@ -4,10 +4,10 @@ apps:
     enabled: true
   
   plexMetaManager:
-    enabled: false
+    enabled: true
 
   plexUtills:
-    enabled: false
+    enabled: true
 
   tautulli:
     enabled: true
