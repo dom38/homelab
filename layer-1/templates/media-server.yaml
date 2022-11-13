@@ -15,8 +15,6 @@ spec:
     repoURL: https://github.com/dom38/homelab.git
     targetRevision: main
     path: layer-2/media-server
-    helm:
-      values: |
 
   destination:
     server: https://kubernetes.default.svc
