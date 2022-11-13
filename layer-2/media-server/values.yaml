@@ -1,10 +1,10 @@
 apps:
 
   emby:
-    enabled: false
+    enabled: true
   
   jellyfin:
-    enabled: false
+    enabled: true
 
   plex:
-    enabled: false
+    enabled: true
