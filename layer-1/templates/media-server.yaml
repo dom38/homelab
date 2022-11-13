@@ -1,0 +1,41 @@
+{{- if .Values.apps.mediaServer.enabled -}}
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: media-server
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  project: core
+  source:
+    repoURL: https://kubernetes-sigs.github.io/media-server/
+    targetRevision: main
+    path: layer-2/media-server
+    helm:
+      values: |
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: media-server
+
+  # Sync policy
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true 
+      allowEmpty: false
+    syncOptions:
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 30s
+  revisionHistoryLimit: 3
+
+{{- end -}}

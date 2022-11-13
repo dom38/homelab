@@ -1,0 +1,10 @@
+apps:
+
+  emby:
+    enabled: false
+  
+  jellyfin:
+    enabled: false
+
+  plex:
+    enabled: false
