@@ -40,6 +40,9 @@ apps:
   istioGateway:
     enabled: false
 
+  mediaServer:
+    enabled: true
+
   metricsServer:
     enabled: true
     valuesOverrides:
