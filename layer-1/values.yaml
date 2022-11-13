@@ -44,3 +44,5 @@ apps:
         loadBalancerIP: "192.168.128.249"
         annotations:
           metallb.universe.tf/address-pool: homelab-addresspool
+  metricsServer:
+    enabled: true
