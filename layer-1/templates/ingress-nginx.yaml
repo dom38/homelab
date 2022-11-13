@@ -94,5 +94,4 @@ spec:
     - grpc.argocd.k8s.domingo.link
     secretName: argocd-secret
 
----
 {{- end -}}
