@@ -17,7 +17,7 @@ spec:
     chart: plex-meta-manager
     helm:
       values: |
-        {{- .Values.apps.plex-meta-manager.valuesOverrides | toYaml | nindent 8 }}
+        {{- .Values.apps.plexMetaManager.valuesOverrides | toYaml | nindent 8 }}
 
   destination:
     server: https://kubernetes.default.svc
