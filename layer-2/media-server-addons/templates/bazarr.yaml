@@ -41,29 +41,29 @@ spec:
 
 ---
 
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: bazarr-ingress
-#   namespace: bazarr
-#   annotations:
-#     cert-manager.io/cluster-issuer: letsencrypt-prod
-# spec:
-#   tls:
-#   - hosts:
-#     - bazarr.k8s.domingo.link
-#     secretName: bazarr-ingress-tls
-#   rules:
-#     - host: bazarr.k8s.domingo.link
-#       http:
-#         paths:
-#           - path: /
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: bazarr
-#                 port:
-#                   number: 3579
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bazarr-ingress
+  namespace: bazarr
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+  - hosts:
+    - bazarr.k8s.domingo.link
+    secretName: bazarr-ingress-tls
+  rules:
+    - host: bazarr.k8s.domingo.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: bazarr
+                port:
+                  number: 6767
 
 
 {{- end -}}

@@ -41,29 +41,29 @@ spec:
 
 ---
 
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: radarr-ingress
-#   namespace: radarr
-#   annotations:
-#     cert-manager.io/cluster-issuer: letsencrypt-prod
-# spec:
-#   tls:
-#   - hosts:
-#     - radarr.k8s.domingo.link
-#     secretName: radarr-ingress-tls
-#   rules:
-#     - host: radarr.k8s.domingo.link
-#       http:
-#         paths:
-#           - path: /
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: radarr
-#                 port:
-#                   number: 3579
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: radarr-ingress
+  namespace: radarr
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+  - hosts:
+    - radarr.k8s.domingo.link
+    secretName: radarr-ingress-tls
+  rules:
+    - host: radarr.k8s.domingo.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: radarr
+                port:
+                  number: 7878
 
 
 {{- end -}}
