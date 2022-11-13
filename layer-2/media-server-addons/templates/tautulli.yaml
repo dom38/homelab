@@ -41,29 +41,29 @@ spec:
 
 ---
 
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: tautulli-ingress
-#   namespace: tautulli
-#   annotations:
-#     cert-manager.io/cluster-issuer: letsencrypt-prod
-# spec:
-#   tls:
-#   - hosts:
-#     - tautulli.k8s.domingo.link
-#     secretName: tautulli-ingress-tls
-#   rules:
-#     - host: tautulli.k8s.domingo.link
-#       http:
-#         paths:
-#           - path: /
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: tautulli
-#                 port:
-#                   number: 32400
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tautulli-ingress
+  namespace: tautulli
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+  - hosts:
+    - tautulli.k8s.domingo.link
+    secretName: tautulli-ingress-tls
+  rules:
+    - host: tautulli.k8s.domingo.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: tautulli
+                port:
+                  number: 8181
 
 
 {{- end -}}

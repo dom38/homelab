@@ -41,29 +41,4 @@ spec:
 
 ---
 
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: plex-meta-manager-ingress
-#   namespace: plex-meta-manager
-#   annotations:
-#     cert-manager.io/cluster-issuer: letsencrypt-prod
-# spec:
-#   tls:
-#   - hosts:
-#     - plex-meta-manager.k8s.domingo.link
-#     secretName: plex-meta-manager-ingress-tls
-#   rules:
-#     - host: plex-meta-manager.k8s.domingo.link
-#       http:
-#         paths:
-#           - path: /
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: plex-meta-manager
-#                 port:
-#                   number: 32400
-
-
 {{- end -}}

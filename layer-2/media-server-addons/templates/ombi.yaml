@@ -41,29 +41,29 @@ spec:
 
 ---
 
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: ombi-ingress
-#   namespace: ombi
-#   annotations:
-#     cert-manager.io/cluster-issuer: letsencrypt-prod
-# spec:
-#   tls:
-#   - hosts:
-#     - ombi.k8s.domingo.link
-#     secretName: ombi-ingress-tls
-#   rules:
-#     - host: ombi.k8s.domingo.link
-#       http:
-#         paths:
-#           - path: /
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: ombi
-#                 port:
-#                   number: 32400
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ombi-ingress
+  namespace: ombi
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+  - hosts:
+    - ombi.k8s.domingo.link
+    secretName: ombi-ingress-tls
+  rules:
+    - host: ombi.k8s.domingo.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ombi
+                port:
+                  number: 3579
 
 
 {{- end -}}
