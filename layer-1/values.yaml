@@ -42,3 +42,6 @@ apps:
 
   metricsServer:
     enabled: true
+    valuesOverrides:
+      args:
+      - '--kubelet-insecure-tls'
