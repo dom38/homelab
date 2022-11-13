@@ -1,0 +1,4 @@
+apiVersion: v2
+name: media-server-addons
+version: 1.0.0
+description: Supporting applications for the media server(s)

@@ -1,0 +1,69 @@
+{{- if .Values.apps.plexMetaManager.enabled -}}
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: plex-meta-manager
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "15"
+spec:
+  project: core
+  source:
+    repoURL: https://charts.truecharts.org
+    targetRevision: 0.0.34
+    chart: plex-meta-manager
+    helm:
+      values: |
+        {{- .Values.apps.plex-meta-manager.valuesOverrides | toYaml | nindent 8 }}
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: plex-meta-manager
+
+  # Sync policy
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true 
+      allowEmpty: false
+    syncOptions:
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 30s
+  revisionHistoryLimit: 3
+
+---
+
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: plex-meta-manager-ingress
+#   namespace: plex-meta-manager
+#   annotations:
+#     cert-manager.io/cluster-issuer: letsencrypt-prod
+# spec:
+#   tls:
+#   - hosts:
+#     - plex-meta-manager.k8s.domingo.link
+#     secretName: plex-meta-manager-ingress-tls
+#   rules:
+#     - host: plex-meta-manager.k8s.domingo.link
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: plex-meta-manager
+#                 port:
+#                   number: 32400
+
+
+{{- end -}}

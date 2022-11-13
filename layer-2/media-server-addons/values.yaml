@@ -1,0 +1,13 @@
+apps:
+
+  ombi:
+    enabled: true
+  
+  plexMetaManager:
+    enabled: false
+
+  plexUtills:
+    enabled: false
+
+  tautulli:
+    enabled: true
