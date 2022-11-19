@@ -24,3 +24,13 @@ apps:
 
   transmission:
     enabled: true
+    valuesOverrides:
+      extraVolumes:
+      - name: open-vpn-config
+        secret:
+          secretName: open-vpn-configuration
+          optional: false
+      extraVolumeMounts:
+      - name: open-vpn-config
+        mountPath: /etc/openvpn/custom/
+        readOnly: true

@@ -17,6 +17,11 @@ spec:
     chart: transmission-openvpn
     helm:
       values: |
+        env:
+          OPENVPN_PROVIDER: "custom"
+        secretEnv:
+          OPENVPN_USERNAME: user
+          OPENVPN_PASSWORD: pass
         {{- .Values.apps.transmission.valuesOverrides | toYaml | nindent 8 }}
 
   destination:
