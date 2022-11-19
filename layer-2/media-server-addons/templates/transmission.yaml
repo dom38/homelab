@@ -19,7 +19,7 @@ spec:
       values: |
         env:
           OPENVPN_PROVIDER: "custom"
-          LOCAL_NETWORK: 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+          LOCAL_NETWORK: "0.0.0.0/0"
         secretEnv:
           OPENVPN_USERNAME: user
           OPENVPN_PASSWORD: pass
