@@ -29,9 +29,12 @@ apps:
       - name: move-secrets
         image: busybox:1.29.2
         command:
-        - "/bin/sh"
-        - "-c"
-        - "cp /openvpnconfig/* /etc/openvpn/custom/."
+        - "cp" 
+        - "/openvpnconfig/*"
+        - "/etc/openvpn/custom/."
+        - "&&"
+        - "ls"
+        - "/etc/openvpn/custom/"
         volumeMounts:
         - name: config
           mountPath: /etc/openvpn/custom/
