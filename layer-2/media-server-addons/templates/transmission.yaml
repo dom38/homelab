@@ -73,6 +73,10 @@ metadata:
   name: open-vpn-configuration
   namespace: transmission
 type: Opaque
-data: {}
+data:
+  ca.crt: ""
+  client.crt: ""
+  client.key: ""
+  openvpn.ovpn: ""
 
 {{- end -}}

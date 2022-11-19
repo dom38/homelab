@@ -24,6 +24,7 @@ spec:
   - group: "*"
     jsonPointers:
     - /data
+    - /data/*
     kind: Secret
     name: open-vpn-configuration
     namespace: transmission
