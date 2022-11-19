@@ -33,4 +33,4 @@ apps:
       extraVolumeMounts:
       - name: open-vpn-config
         mountPath: /etc/openvpn/custom/
-        defaultMode: 420
+        defaultMode: 720
