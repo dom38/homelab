@@ -21,7 +21,7 @@ spec:
     namespace: media-server-addons
   
   ignoreDifferences:
-  - group: ""
+  - group: "*"
     jsonPointers:
     - /data
     kind: Secret
