@@ -41,10 +41,10 @@ apps:
     enabled: false
 
   mediaServerAddons:
-    enabled: true
+    enabled: false
   
   mediaServer:
-    enabled: true
+    enabled: false
 
   metricsServer:
     enabled: true
