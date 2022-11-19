@@ -61,4 +61,13 @@ spec:
             key: secret-access-key
           role: arn:aws:iam::296929104043:role/acme-challenge-solver
 
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: aws-credentials
+type: Opaque
+
+---
 {{- end -}}
