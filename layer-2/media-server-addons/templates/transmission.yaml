@@ -71,6 +71,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: open-vpn-configuration
+  namespace: transmission
 type: Opaque
 
 {{- end -}}
