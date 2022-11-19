@@ -65,5 +65,12 @@ spec:
                 port:
                   number: 80
 
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: open-vpn-configuration
+type: Opaque
 
 {{- end -}}
