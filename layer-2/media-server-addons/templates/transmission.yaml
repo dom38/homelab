@@ -73,5 +73,6 @@ metadata:
   name: open-vpn-configuration
   namespace: transmission
 type: Opaque
+data: {}
 
 {{- end -}}
