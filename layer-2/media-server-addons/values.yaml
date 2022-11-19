@@ -38,16 +38,16 @@ apps:
             mountPath: /etc/openvpn/custom/
           - name: open-vpn-config
             mountPath: /openvpnconfig/
-          volumes:
-          - name: config
-            emptyDir: {}
-          - name: open-vpn-config
-            secret:
-              secretName: open-vpn-configuration
-              optional: false
           securityContext:
             runAsUser: 568
             runAsGroup: 568
+      extraVolumes:
+      - name: config
+        emptyDir: {}
+      - name: open-vpn-config
+        secret:
+          secretName: open-vpn-configuration
+          optional: false
       extraVolumeMounts:
       - name: config
         mountPath: /etc/openvpn/custom/
