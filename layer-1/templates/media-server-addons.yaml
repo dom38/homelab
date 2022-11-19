@@ -19,6 +19,14 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: media-server-addons
+  
+  ignoreDifferences:
+  - group: ""
+    jsonPointers:
+    - /data
+    kind: Secret
+    name: open-vpn-configuration
+    namespace: transmission
 
   # Sync policy
   syncPolicy:
