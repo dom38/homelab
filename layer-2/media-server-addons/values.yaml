@@ -25,12 +25,30 @@ apps:
   transmission:
     enabled: true
     valuesOverrides:
-      extraVolumes:
-      - name: open-vpn-config
-        secret:
-          secretName: open-vpn-configuration
-          optional: false
+      initContainers:
+        move-secrets:
+          name: move-secrets
+          image: busybox:1.29.2
+          command:
+          - "/bin/sh"
+          - "-c"
+          - "cp /openvpnconfig/* /etc/openvpn/custom/."
+          volumeMounts:
+          - name: config
+            mountPath: /etc/openvpn/custom/
+          - name: open-vpn-config
+            mountPath: /openvpnconfig/
+          volumes:
+          - name: config
+            emptyDir: {}
+          - name: open-vpn-config
+            secret:
+              secretName: open-vpn-configuration
+              optional: false
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
       extraVolumeMounts:
-      - name: open-vpn-config
+      - name: config
         mountPath: /etc/openvpn/custom/
         defaultMode: 777
