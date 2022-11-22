@@ -17,12 +17,6 @@ spec:
     path: helm-charts/deluge-ovpn
     helm:
       values: |
-        env:
-          OPENVPN_PROVIDER: "custom"
-          LOCAL_NETWORK: "0.0.0.0/0"
-        secretEnv:
-          OPENVPN_USERNAME: user
-          OPENVPN_PASSWORD: pass
         {{- .Values.apps.delugeOvpn.valuesOverrides | toYaml | nindent 8 }}
 
   destination:
