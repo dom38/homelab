@@ -24,7 +24,7 @@ ingress:
     - host: deluge-ovpn.k8s.domingo.link
       paths:
         - path: /
-          pathType: prefix
+          pathType: Prefix
   tls:
   - hosts:
     - deluge-ovpn.k8s.domingo.link
