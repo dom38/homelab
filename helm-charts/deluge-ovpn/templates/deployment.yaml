@@ -72,6 +72,14 @@ spec:
               containerPort: 8112
               hostPort: 8112
               protocol: TCP
+            - name: privoxy
+              containerPort: 8118
+              hostPort: 8118
+              protocol: TCP
+            - name: daemon
+              containerPort: 58846
+              hostPort: 58846
+              protocol: TCP
           # livenessProbe:
           #   httpGet:
           #     path: /

@@ -11,5 +11,9 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    - port: 8118
+      targetPort: privoxy
+      protocol: TCP
+      name: privoxy
   selector:
     {{- include "deluge-ovpn.selectorLabels" . | nindent 4 }}
