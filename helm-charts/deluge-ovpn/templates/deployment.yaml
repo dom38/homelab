@@ -62,6 +62,8 @@ spec:
             value: openvpn
           - name: VPN_ENABLED
             value: "yes"
+          - name: VPN_PROV
+            value: "custom"
           - name: LAN_NETWORK
             value: "10.0.0.0/8"
           ports:
