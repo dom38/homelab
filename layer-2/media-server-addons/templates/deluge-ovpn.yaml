@@ -1,0 +1,50 @@
+{{- if .Values.apps.delugeOvpn.enabled -}}
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: delugeOvpn
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "15"
+spec:
+  project: core
+  source:
+    repoURL: https://github.com/dom38/homelab.git
+    targetRevision: main
+    path: helm-charts/deluge-ovpn
+    helm:
+      values: |
+        env:
+          OPENVPN_PROVIDER: "custom"
+          LOCAL_NETWORK: "0.0.0.0/0"
+        secretEnv:
+          OPENVPN_USERNAME: user
+          OPENVPN_PASSWORD: pass
+        {{- .Values.apps.delugeOvpn.valuesOverrides | toYaml | nindent 8 }}
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: delugeOvpn
+  
+  ignoreDifferences:
+    - group: "*"
+      kind: Secret
+
+  # Sync policy
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 30s
+  revisionHistoryLimit: 3
+
+---
+
+{{- end -}}

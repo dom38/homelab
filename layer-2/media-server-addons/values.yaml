@@ -3,6 +3,9 @@ apps:
   bazarr:
     enabled: true
   
+  delugeOvpn:
+    enabled: true
+
   ombi:
     enabled: true
   
@@ -23,7 +26,7 @@ apps:
     enabled: true
 
   transmission:
-    enabled: true
+    enabled: false
     valuesOverrides:
       initContainers:
       - name: move-secrets
