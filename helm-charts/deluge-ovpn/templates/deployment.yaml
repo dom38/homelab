@@ -67,6 +67,10 @@ spec:
             value: "custom"
           - name: LAN_NETWORK
             value: "10.0.0.0/8"
+          - name: ENABLE_PRIVOXY
+            value: "yes"
+          - name: DEBUG
+            value: "true"
           ports:
             - name: http
               containerPort: 8112
