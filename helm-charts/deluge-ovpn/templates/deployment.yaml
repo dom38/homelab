@@ -41,8 +41,8 @@ spec:
           echo "running"
           ls -la
           ls -la /openvpnconfig/
-          cp /openvpnconfig/* /config/.
-          ls -la /config/
+          cp /openvpnconfig/* /config/openvpn/.
+          ls -la /config/openvpn/
         volumeMounts:
         - name: config
           mountPath: /config
