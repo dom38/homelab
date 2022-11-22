@@ -26,9 +26,31 @@ spec:
       {{- end }}
       volumes:
       - name: config
+        emptyDir: {}
+      - name: static-config
         secret:
           secretName: open-vpn-configuration
           optional: false
+      initContainers:
+      - name: move-secrets
+        image: busybox:1.29.2
+        command:
+        - /bin/sh
+        - -c
+        - |
+          echo "running"
+          ls -la
+          ls -la /openvpnconfig/
+          cp /openvpnconfig/* /config/.
+          ls -la /config/
+        volumeMounts:
+        - name: config
+          mountPath: /config
+        - name: static-config
+          mountPath: /openvpnconfig/
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
