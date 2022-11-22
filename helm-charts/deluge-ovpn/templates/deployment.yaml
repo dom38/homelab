@@ -24,7 +24,6 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "deluge-ovpn.serviceAccountName" . }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
