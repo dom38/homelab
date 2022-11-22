@@ -3,7 +3,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: delugeOvpn
+  name: deluge-ovpn
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -27,7 +27,7 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: delugeOvpn
+    namespace: deluge-ovpn
   
   ignoreDifferences:
     - group: "*"
