@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: s3fuse
-        image: meain/s3-mounter
+        image: meain/s3-mounter:latest
         securityContext:
           privileged: true
         envFrom:
