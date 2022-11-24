@@ -36,4 +36,15 @@ spec:
         duration: 30s
   revisionHistoryLimit: 3
 
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: aws-dns-secret
+  namespace: ddns-route53
+type: Opaque
+
+---
+
 {{- end -}}
