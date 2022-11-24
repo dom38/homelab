@@ -38,13 +38,4 @@ spec:
 
 ---
 
-apiVersion: v1
-kind: Secret
-metadata:
-  name: aws-dns-secret
-  namespace: ddns-route53
-type: Opaque
-
----
-
 {{- end -}}
