@@ -5,6 +5,9 @@ apps:
     valuesOverrides:
       installCRDs: true
 
+  ddnsRoute53:
+    enabled: true
+
   ingressNginx:
     enabled: true
     valuesOverrides:
