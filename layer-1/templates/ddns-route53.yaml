@@ -44,11 +44,6 @@ metadata:
   name: aws-dns-secret
   namespace: ddns-route53
 type: Opaque
-data:
-  access-key: ""
-  secret-access-key: ""
-  hosted-zone-id: ""
-  recordset-name: ""
 
 ---
 
