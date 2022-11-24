@@ -28,6 +28,7 @@ spec:
     namespace: "*"
     jsonPointers:
     - /data
+    - /data/*
 
   # Sync policy
   syncPolicy:
