@@ -24,8 +24,10 @@ spec:
     namespace: deluge-ovpn
   
   ignoreDifferences:
-    - group: "*"
-      kind: Secret
+  - kind: Secret
+    namespace: "*"
+    jsonPointers:
+    - /data
 
   # Sync policy
   syncPolicy:
