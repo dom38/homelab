@@ -48,6 +48,7 @@ metadata:
   namespace: ombi
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/whitelist-source-range: 86.1.85.130/32
 spec:
   tls:
   - hosts:

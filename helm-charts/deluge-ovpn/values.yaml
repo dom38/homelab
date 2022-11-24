@@ -20,6 +20,7 @@ ingress:
   enabled: true
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/whitelist-source-range: 86.1.85.130/32
   hosts:
     - host: deluge-ovpn.k8s.domingo.link
       paths:
