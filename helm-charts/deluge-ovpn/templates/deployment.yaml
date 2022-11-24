@@ -58,6 +58,7 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          
           env:
           - name: VPN_CLIENT
             value: openvpn
@@ -69,8 +70,6 @@ spec:
             value: "10.0.0.0/8"
           - name: ENABLE_PRIVOXY
             value: "yes"
-          - name: DEBUG
-            value: "true"
           ports:
             - name: http
               containerPort: 8112
