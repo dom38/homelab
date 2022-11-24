@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ddns-route53.fullname" . }}
+  labels:
+    {{- include "ddns-route53.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "ddns-route53.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "ddns-route53.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: SCHEDULE
+            value: "*/5 * * * *"
+          - name: LOG_LEVEL
+            value: "info"
+          - name: DDNSR53_CREDENTIALS_ACCESSKEYID
+            valueFrom:
+              secretKeyRef:
+                name: aws-dns-secret
+                key: access-key
+          - name: DDNSR53_CREDENTIALS_SECRETACCESSKEY
+            valueFrom:
+              secretKeyRef:
+                name: aws-dns-secret
+                key: secret-access-key
+          - name: DDNSR53_ROUTE53_HOSTEDZONEID
+            valueFrom:
+              secretKeyRef:
+                name: aws-dns-secret
+                key: hosted-zone-id
+          - name: DDNSR53_ROUTE53_RECORDSSET_0_NAME
+            valueFrom:
+              secretKeyRef:
+                name: aws-dns-secret
+                key: recordset-name
+          - name: DDNSR53_ROUTE53_RECORDSSET_0_TYPE
+            value: "A"
+          - name: DDNSR53_ROUTE53_RECORDSSET_0_TTL
+            value: "300"
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}

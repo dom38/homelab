@@ -1,0 +1,14 @@
+replicaCount: 1
+
+image:
+  repository: crazymax/ddns-route53
+  pullPolicy: IfNotPresent
+  tag: 2.8.0
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 100Mi
+  requests:
+    cpu: 20m
+    memory: 28Mi
