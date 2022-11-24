@@ -24,9 +24,9 @@ spec:
     namespace: deluge-ovpn
   
   ignoreDifferences:
-  - group: ""
-    kind: Secret
-    namespace: "*"
+  - kind: Secret
+    name: open-vpn-configuration
+    namespace: deluge-ovpn
     jsonPointers:
     - /data
     - /data/*
