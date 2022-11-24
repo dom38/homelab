@@ -54,3 +54,6 @@ apps:
     valuesOverrides:
       args:
       - '--kubelet-insecure-tls'
+
+  s3fs:
+    enabled: true
