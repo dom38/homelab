@@ -5,10 +5,13 @@ metadata:
     app: s3-provider
   name: s3-provider
 spec:
+  selector:
+    matchLabels:
+      name: s3-provider
   template:
     metadata:
       labels:
-        app: s3-provider
+        name: s3-provider
     spec:
       containers:
       - name: s3fuse
