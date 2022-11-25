@@ -56,4 +56,4 @@ apps:
       - '--kubelet-insecure-tls'
 
   s3fs:
-    enabled: true
+    enabled: false
