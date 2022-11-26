@@ -73,7 +73,7 @@ apps:
         nextcloudData:
           enabled: true
           subPath: data
-          existingClaim: "nextcloud-nfs"
+          existingClaim: "nextcloud-nfs-data"
           size: "6T"
       redis:
         enabled: false

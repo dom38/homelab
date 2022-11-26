@@ -100,4 +100,38 @@ spec:
       storage: 6T
   volumeName: nextcloud-nfs
 
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nextcloud-nfs-data
+  namespace: nextcloud
+spec:
+  capacity:
+    storage: 6T
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.128.2
+    path: "/raid0/nextcloud"
+  mountOptions:
+    - nfsvers=4.2
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nextcloud-nfs-data
+  namespace: nextcloud
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 6T
+  volumeName: nextcloud-nfs-data
+
 {{- end -}}
