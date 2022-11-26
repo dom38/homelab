@@ -74,7 +74,7 @@ apps:
         accessMode: ReadWriteOnce
         size: "6T"
         nextcloudData:
-          enabled: true
+          enabled: false
           subPath: data
           existingClaim: "nextcloud-nfs-data"
           size: "6T"
