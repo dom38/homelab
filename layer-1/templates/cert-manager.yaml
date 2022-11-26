@@ -63,14 +63,4 @@ spec:
 
 ---
 
-apiVersion: v1
-kind: Secret
-metadata:
-  name: aws-credentials
-  namespace: cert-manager
-type: Opaque
-data:
-  access-key: ""
-  secret-access-key: ""
----
 {{- end -}}
