@@ -68,7 +68,7 @@ apps:
           https.config.php: |-
             <?php
             $CONFIG = array (
-              'overwritehost' => 'nextcloud.example.com',
+              'overwritehost' => 'nextcloud.domingo.link',
               'overwriteprotocol' => 'https'
             );
         existingSecret: 
