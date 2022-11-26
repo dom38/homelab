@@ -65,8 +65,12 @@ apps:
       nextcloud:
         host: nextcloud.k8s.domingo.link
         configs:
-          overwriteprotocol: https
-          overwrite.cli.url: https://nextcloud.k8s.domingo.link
+          https.config.php: |-
+            <?php
+            $CONFIG = array (
+              'overwritehost' => 'nextcloud.example.com',
+              'overwriteprotocol' => 'https'
+            );
         existingSecret: 
           enabled: true
           secretName: login-credentials
