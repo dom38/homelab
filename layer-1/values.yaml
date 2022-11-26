@@ -60,6 +60,8 @@ apps:
     valuesOverrides:
       livenessProbe:
         enabled: false
+      internalDatabase:
+        enabled: false
       nextcloud:
         host: nextcloud.k8s.domingo.link
         existingSecret: 
@@ -72,11 +74,6 @@ apps:
         existingClaim: "nextcloud-nfs"
         accessMode: ReadWriteMany
         size: "6T"
-        nextcloudData:
-          enabled: false
-          subPath: data
-          existingClaim: "nextcloud-nfs-data"
-          size: "6T"
       mariadb:
         enabled: true
         primary:
