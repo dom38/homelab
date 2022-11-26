@@ -54,6 +54,27 @@ apps:
     valuesOverrides:
       args:
       - '--kubelet-insecure-tls'
+  
+  nextcloud:
+    enabled: true
+    valuesOverrides:
+      nextcloud:
+        host: nextcloud.k8s.domingo.link
+        existingSecret: 
+          enabled: true
+          secretName: login-credentials
+          usernameKey: username
+          passwordKey: password
+      persistence:
+          enabled: true
+          existingClaim: "nextcloud-nfs"
+          accessMode: ReadWriteOnce
+          size: "6T"
+      redis:
+        enabled: true
+        auth:
+          enabled: false
+
 
   s3fs:
     enabled: false
