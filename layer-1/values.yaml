@@ -71,7 +71,7 @@ apps:
           accessMode: ReadWriteOnce
           size: "6T"
       redis:
-        enabled: true
+        enabled: false
         auth:
           enabled: false
 
