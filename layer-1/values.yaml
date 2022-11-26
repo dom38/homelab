@@ -65,9 +65,6 @@ apps:
           secretName: login-credentials
           usernameKey: username
           passwordKey: password
-        extraVolumeMounts:
-          - name: nextcloud-nfs-data
-            mountPath: /var/www/html/data
       persistence:
         enabled: false
         existingClaim: "nextcloud-nfs"
