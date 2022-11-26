@@ -77,6 +77,14 @@ apps:
           subPath: data
           existingClaim: "nextcloud-nfs-data"
           size: "6T"
+      mariadb:
+        enabled: true
+        primary:
+          persistence:
+            enabled: true
+            existingClaim: "nextcloud-nfs-data"
+            size: "6T"
+            accessMode: ReadWriteMany
       redis:
         enabled: false
         auth:
