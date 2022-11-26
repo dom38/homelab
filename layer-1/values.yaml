@@ -66,9 +66,14 @@ apps:
           usernameKey: username
           passwordKey: password
       persistence:
+        enabled: true
+        existingClaim: "nextcloud-nfs"
+        accessMode: ReadWriteOnce
+        size: "6T"
+        nextcloudData:
           enabled: true
+          subPath: data
           existingClaim: "nextcloud-nfs"
-          accessMode: ReadWriteOnce
           size: "6T"
       redis:
         enabled: false
