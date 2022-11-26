@@ -49,6 +49,9 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/whitelist-source-range: 86.1.85.130/32,192.168.128.1/32
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      rewrite ^/\.well-known/carddav https://$server_name/remote.php/dav/ redirect;
+      rewrite ^/\.well-known/caldav https://$server_name/remote.php/dav/ redirect;
 spec:
   tls:
   - hosts:
