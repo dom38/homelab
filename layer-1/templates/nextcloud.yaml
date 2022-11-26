@@ -114,7 +114,7 @@ spec:
     - ReadWriteMany
   nfs:
     server: 192.168.128.2
-    path: "/raid0/nextcloud"
+    path: "/raid0/nextcloud/mariadb"
   mountOptions:
     - nfsvers=4.2
 
