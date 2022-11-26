@@ -64,6 +64,6 @@ spec:
               service:
                 name: emby
                 port:
-                  number: 10079
+                  number: 8096
 
 {{- end -}}
