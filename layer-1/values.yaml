@@ -70,7 +70,7 @@ apps:
       persistence:
         enabled: true
         existingClaim: "nextcloud-nfs"
-        accessMode: ReadWriteOnce
+        accessMode: ReadWriteMany
         size: "6T"
         nextcloudData:
           enabled: false
