@@ -66,5 +66,72 @@ spec:
                 port:
                   number: 32400
 
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: plex-nfs
+  namespace: plex
+spec:
+  capacity:
+    storage: 6T
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.128.2
+    path: "/raid0/media-server"
+  mountOptions:
+    - nfsvers=4.2
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-nfs
+  namespace: plex
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 6T
+  volumeName: plex-nfs
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: plex-config-nfs
+  namespace: plex
+spec:
+  capacity:
+    storage: 6T
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.128.2
+    path: "/raid0/config/plex"
+  mountOptions:
+    - nfsvers=4.2
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-config-nfs
+  namespace: plex
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 6T
+  volumeName: plex-config-nfs
 
 {{- end -}}

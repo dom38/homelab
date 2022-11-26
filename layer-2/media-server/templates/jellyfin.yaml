@@ -66,4 +66,71 @@ spec:
                 port:
                   number: 8096
 
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jellyfin-nfs
+  namespace: jellyfin
+spec:
+  capacity:
+    storage: 6T
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.128.2
+    path: "/raid0/media-server"
+  mountOptions:
+    - nfsvers=4.2
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jellyfin-nfs
+  namespace: jellyfin
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 6T
+  volumeName: jellyfin-nfs
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jellyfin-config-nfs
+  namespace: jellyfin
+spec:
+  capacity:
+    storage: 6T
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.128.2
+    path: "/raid0/config/jellyfin"
+  mountOptions:
+    - nfsvers=4.2
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jellyfin-config-nfs
+  namespace: jellyfin
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 6T
+  volumeName: jellyfin-config-nfs
 {{- end -}}

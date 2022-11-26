@@ -2,9 +2,48 @@ apps:
 
   emby:
     enabled: true
+    persistence:
+      config:
+        enabled: true
+        existingClaim: emby-config-nfs
+        accessMode: ReadWriteMany
+        size: 6T
+        type: pvc
+      data:
+        enabled: true
+        existingClaim: emby-nfs
+        accessMode: ReadWriteMany
+        size: 6T
+        type: pvc
   
   jellyfin:
     enabled: true
+    persistence:
+      config:
+        enabled: true
+        existingClaim: jellyfin-config-nfs
+        accessMode: ReadWriteMany
+        size: 6T
+        type: pvc
+      data:
+        enabled: true
+        existingClaim: jellyfin-nfs
+        accessMode: ReadWriteMany
+        size: 6T
+        type: pvc
 
   plex:
     enabled: true
+    persistence:
+      config:
+        enabled: true
+        existingClaim: plex-config-nfs
+        accessMode: ReadWriteMany
+        size: 6T
+        type: pvc
+      data:
+        enabled: true
+        existingClaim: plex-nfs
+        accessMode: ReadWriteMany
+        size: 6T
+        type: pvc
