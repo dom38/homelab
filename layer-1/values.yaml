@@ -69,7 +69,8 @@ apps:
             <?php
             $CONFIG = array (
               'overwritehost' => 'nextcloud.domingo.link',
-              'overwriteprotocol' => 'https'
+              'overwriteprotocol' => 'https',
+              'overwrite.cli.url' => 'https://nextcloud.domingo.link'
             );
         existingSecret: 
           enabled: true
