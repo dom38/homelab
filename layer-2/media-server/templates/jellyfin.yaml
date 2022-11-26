@@ -12,8 +12,8 @@ metadata:
 spec:
   project: core
   source:
-    repoURL: https://charts.truecharts.org
-    targetRevision: 12.0.2
+    repoURL: https://k8s-at-home.com/charts/
+    targetRevision: 9.5.3
     chart: jellyfin
     helm:
       values: |
