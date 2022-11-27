@@ -38,8 +38,8 @@ apps:
     enabled: true
     valuesOverrides:
       env:
-        name: CLAIM_CODE
-        value: claim-evKT1X5sgpNDzHpViyQy
+        name: PLEX_CLAIM
+        value: claim-ctv1GqKuDHjT7uHTyf41
       persistence:
         config:
           enabled: true
