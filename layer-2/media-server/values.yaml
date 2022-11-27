@@ -38,7 +38,7 @@ apps:
     enabled: true
     valuesOverrides:
       env:
-        name: PLEX_CLAIM
+      - name: PLEX_CLAIM
         value: claim-ctv1GqKuDHjT7uHTyf41
       persistence:
         config:
