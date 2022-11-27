@@ -8,13 +8,6 @@ apps:
 
   ombi:
     enabled: true
-  
-  # Needs additional config, API keys for connnecting to Notifiarr + TMDb
-  plexMetaManager:
-    enabled: false
-
-  plexUtills:
-    enabled: true
 
   radarr:
     enabled: true
