@@ -98,6 +98,8 @@ apps:
   podGateway:
     enabled: true
     valuesOverrides:
+      routed_namespaces:
+        - transmission
       addons:
         vpn:
           enabled: true
