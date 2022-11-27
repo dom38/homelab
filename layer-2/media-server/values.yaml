@@ -37,6 +37,9 @@ apps:
   plex:
     enabled: true
     valuesOverrides:
+      env:
+        name: CLAIM_CODE
+        value: claim-evKT1X5sgpNDzHpViyQy
       persistence:
         config:
           enabled: true
