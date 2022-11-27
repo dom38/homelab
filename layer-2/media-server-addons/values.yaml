@@ -20,6 +20,12 @@ apps:
     enabled: true
     valuesOverrides:
       persistence:
+        config:
+          enabled: true
+          existingClaim: radarr-config-nfs
+          accessMode: ReadWriteMany
+          size: 6T
+          type: pvc
         data:
           enabled: true
           existingClaim: radarr-nfs
