@@ -13,7 +13,7 @@ spec:
   project: core
   source:
     repoURL: https://geek-cookbook.github.io/charts/
-    targetRevision: 2.5.0
+    targetRevision: 8.4.3
     chart: transmission
     helm:
       values: |
