@@ -12,26 +12,16 @@ metadata:
 spec:
   project: core
   source:
-    repoURL: https://utkuozdemir.org/helm-charts
+    repoURL: https://geek-cookbook.github.io/charts/
     targetRevision: 2.5.0
-    chart: transmission-openvpn
+    chart: transmission
     helm:
       values: |
-        env:
-          OPENVPN_PROVIDER: "custom"
-          LOCAL_NETWORK: "0.0.0.0/0"
-        secretEnv:
-          OPENVPN_USERNAME: user
-          OPENVPN_PASSWORD: pass
         {{- .Values.apps.transmission.valuesOverrides | toYaml | nindent 8 }}
 
   destination:
     server: https://kubernetes.default.svc
     namespace: transmission
-  
-  ignoreDifferences:
-    - group: "*"
-      kind: Secret
 
   # Sync policy
   syncPolicy:
@@ -73,5 +63,71 @@ spec:
                   number: 80
 
 ---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: transmission-nfs
+  namespace: transmission
+spec:
+  capacity:
+    storage: 6T
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.128.2
+    path: "/raid0/torrents"
+  mountOptions:
+    - nfsvers=4.2
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: transmission-nfs
+  namespace: transmission
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 6T
+  volumeName: transmission-nfs
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: transmission-config-nfs
+  namespace: transmission
+spec:
+  capacity:
+    storage: 6T
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.128.2
+    path: "/raid0/config/transmission"
+  mountOptions:
+    - nfsvers=4.2
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: transmission-config-nfs
+  namespace: transmission
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 6T
+  volumeName: transmission-config-nfs
 
 {{- end -}}

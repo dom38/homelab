@@ -69,36 +69,18 @@ apps:
     enabled: true
 
   transmission:
-    enabled: false
+    enabled: true
     valuesOverrides:
-      initContainers:
-      - name: move-secrets
-        image: busybox:1.29.2
-        command:
-        - /bin/sh
-        - -c
-        - |
-          echo "running"
-          ls -la
-          ls -la /openvpnconfig/
-          cp /openvpnconfig/* /etc/openvpn/custom/.
-          ls -la /etc/openvpn/custom/
-        volumeMounts:
-        - name: config
-          mountPath: /etc/openvpn/custom/
-        - name: open-vpn-config
-          mountPath: /openvpnconfig/
-        securityContext:
-          runAsUser: 568
-          runAsGroup: 568
-      extraVolumes:
-      - name: config
-        emptyDir: {}
-      - name: open-vpn-config
-        secret:
-          secretName: open-vpn-configuration
-          optional: false
-      extraVolumeMounts:
-      - name: config
-        mountPath: /etc/openvpn/custom/
-        defaultMode: 777
+      persistence:
+        config:
+          enabled: true
+          existingClaim: transmission-config-nfs
+          accessMode: ReadWriteMany
+          size: 6T
+          type: pvc
+        torrents:
+          enabled: true
+          existingClaim: transmission-nfs
+          accessMode: ReadWriteMany
+          size: 6T
+          type: pvc
