@@ -18,6 +18,14 @@ apps:
 
   radarr:
     enabled: true
+    valuesOverrides:
+      persistence:
+        data:
+          enabled: true
+          existingClaim: radarr-nfs
+          accessMode: ReadWriteMany
+          size: 6T
+          type: pvc
   
   sonarr:
     enabled: true
