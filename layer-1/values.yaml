@@ -98,6 +98,8 @@ apps:
   podGateway:
     enabled: true
     valuesOverrides:
+      settings:
+        NOT_ROUTED_TO_GATEWAY_CIDRS: "10.0.0.0/8"
       routed_namespaces:
         - transmission
       addons:
