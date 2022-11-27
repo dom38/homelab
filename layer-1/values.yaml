@@ -95,6 +95,14 @@ apps:
         auth:
           enabled: false
 
+  podGateway:
+    enabled: true
+    valuesOverrides:
+      addons:
+        vpn:
+          enabled: true
+          type: openvpn
+          configFileSecret: openvpn
 
   s3fs:
     enabled: false
