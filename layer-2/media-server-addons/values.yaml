@@ -2,12 +2,34 @@ apps:
 
   bazarr:
     enabled: true
+    valuesOverrides:
+      persistence:
+        config:
+          enabled: true
+          existingClaim: bazarr-config-nfs
+          accessMode: ReadWriteMany
+          size: 6T
+          type: pvc
+        data:
+          enabled: true
+          existingClaim: bazarr-nfs
+          accessMode: ReadWriteMany
+          size: 6T
+          type: pvc
   
   delugeOvpn:
     enabled: true
 
   ombi:
     enabled: true
+    valuesOverrides:
+      persistence:
+        config:
+          enabled: true
+          existingClaim: ombi-config-nfs
+          accessMode: ReadWriteMany
+          size: 6T
+          type: pvc
 
   radarr:
     enabled: true
@@ -28,6 +50,20 @@ apps:
   
   sonarr:
     enabled: true
+    valuesOverrides:
+      persistence:
+        config:
+          enabled: true
+          existingClaim: sonarr-config-nfs
+          accessMode: ReadWriteMany
+          size: 6T
+          type: pvc
+        data:
+          enabled: true
+          existingClaim: sonarr-nfs
+          accessMode: ReadWriteMany
+          size: 6T
+          type: pvc
 
   tautulli:
     enabled: true
