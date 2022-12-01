@@ -1,0 +1,39 @@
+{{- if .Values.apps.miscApplications.enabled -}}
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: misc-applications
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  project: core
+  source:
+    repoURL: https://github.com/dom38/homelab.git
+    targetRevision: main
+    path: layer-2/misc-applications
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: misc-applications
+
+  # Sync policy
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true 
+      allowEmpty: false
+    syncOptions:
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 30s
+  revisionHistoryLimit: 3
+
+{{- end -}}

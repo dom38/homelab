@@ -1,0 +1,4 @@
+apiVersion: v2
+name: misc-applications
+version: 1.0.0
+description: Miscellaneous applications

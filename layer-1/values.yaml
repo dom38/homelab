@@ -54,7 +54,9 @@ apps:
     valuesOverrides:
       args:
       - '--kubelet-insecure-tls'
-  
+  miscApplications:
+    enabled: true
+
   nextcloud:
     enabled: true
     valuesOverrides:
