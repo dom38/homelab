@@ -71,6 +71,11 @@ apps:
   transmission:
     enabled: true
     valuesOverrides:
+      probes:
+        liveness:
+          enabled: false
+        readiness:
+          enabled: false
       persistence:
         config:
           enabled: true
