@@ -62,7 +62,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: pihole
+                name: pihole-web
                 port:
                   number: 80
 {{- end -}}
