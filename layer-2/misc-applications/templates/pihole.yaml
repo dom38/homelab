@@ -41,4 +41,28 @@ spec:
 
 ---
 
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pihole-ingress
+  namespace: pihole
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/whitelist-source-range: 86.1.85.130/32,192.168.128.1/32
+spec:
+  tls:
+  - hosts:
+    - pihole.k8s.domingo.link
+    secretName: pihole-ingress-tls
+  rules:
+    - host: pihole.k8s.domingo.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pihole
+                port:
+                  number: 80
 {{- end -}}

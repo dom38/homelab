@@ -5,15 +5,3 @@ apps:
 
   pihole:
     enabled: true
-    valuesOverrides:
-      ingress:
-        enabled: true
-        annotations: 
-          cert-manager.io/cluster-issuer: letsencrypt-prod
-          nginx.ingress.kubernetes.io/whitelist-source-range: 86.1.85.130/32,192.168.128.1/32
-        hosts:
-        - pihole.k8s.domingo.link
-        tls:
-        - hosts:
-          - pihole.k8s.domingo.link
-          secretName: pihole-ingress-tls
