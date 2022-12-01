@@ -76,6 +76,8 @@ apps:
           enabled: false
         readiness:
           enabled: false
+        startup:
+          enabled: false
       persistence:
         config:
           enabled: true
