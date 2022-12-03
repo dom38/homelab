@@ -51,7 +51,7 @@ spec:
             - name: listen
               containerPort: 8999
               protocol: TCP
-            - name: lstenudp
+            - name: listenudp
               containerPort: 8999
               protocol: UDP
           # livenessProbe:
