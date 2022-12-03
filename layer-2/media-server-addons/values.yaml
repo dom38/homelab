@@ -23,6 +23,8 @@ apps:
   jackett:
     enabled: true
     valuesOverrides:
+      securityContext:
+        privileged: true
       replicaCount: 1
       image:
         repository: "dyonr/jackettvpn" # Special image to use Jackett over a VPN
@@ -54,8 +56,6 @@ apps:
           mountPath: "/config"
         - name: "downloads"
           mountPath: "/blackhole"
-      securityContext:
-        privileged: true
 
   ombi:
     enabled: true
