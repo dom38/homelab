@@ -38,9 +38,7 @@ apps:
         - name: LAN_NETWORK
           value: "10.0.0.0/8"
         - name: NAME_SERVERS
-          value: "1.1.1.1,1.0.0.1"
-        - name: LEGACY_IPTABLES
-          value: "yes"
+          value: "8.8.8.8,8.8.4.4"
       service:
         type: ClusterIP
         port: 9117
