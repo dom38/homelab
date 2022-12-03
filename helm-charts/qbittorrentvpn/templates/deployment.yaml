@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "qbittorrentvpn.fullname" . }}
+  labels:
+    {{- include "qbittorrentvpn.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "qbittorrentvpn.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "qbittorrentvpn.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: qbittorrent-config-nfs
+      - name: downloads
+        persistentVolumeClaim:
+          claimName: qbittorrent-torrent-nfs
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: VPN_ENABLED
+            value: "yes"
+          - name: LAN_NETWORK
+            value: "10.0.0.0/8"
+          - name: NAME_SERVERS
+            value: "8.8.8.8,8.8.4.4"
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+            - name: listen
+              containerPort: 8999
+              protocol: TCP
+            - name: lstenudp
+              containerPort: 8999
+              protocol: UCP
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+          - name: config
+            mountPath: /config
+          - name: downloads
+            mountPath: /downloads
+        
+      

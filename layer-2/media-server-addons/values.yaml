@@ -31,6 +31,9 @@ apps:
           size: 6T
           type: pvc
 
+  qbittorrentvpn:
+    enabled: true
+
   radarr:
     enabled: true
     valuesOverrides:

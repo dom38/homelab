@@ -1,0 +1,42 @@
+replicaCount: 1
+
+image:
+  repository: markusmcnugen/qbittorrentvpn
+  pullPolicy: IfNotPresent
+  tag: latest
+
+serviceAccount:
+  create: false
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/whitelist-source-range: 86.1.85.130/32,192.168.128.1/32
+  hosts:
+    - host: qbittorrentvpn.k8s.domingo.link
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+  - hosts:
+    - qbittorrentvpn.k8s.domingo.link
+    secretName: qbittorrentvpn-ingress-tls
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 500Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
