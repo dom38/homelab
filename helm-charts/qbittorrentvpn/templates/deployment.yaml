@@ -53,7 +53,7 @@ spec:
               protocol: TCP
             - name: lstenudp
               containerPort: 8999
-              protocol: UCP
+              protocol: UDP
           # livenessProbe:
           #   httpGet:
           #     path: /
