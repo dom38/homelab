@@ -27,7 +27,7 @@ apps:
         privileged: true
       replicaCount: 1
       image:
-        repository: "dyonr/jackettvpn" # Special image to use Jackett over a VPN
+        repository: "alex171/jackettvpn" # Special image to use Jackett over a VPN
         tag: "latest"
         pullPolicy: IfNotPresent
       env:
