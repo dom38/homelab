@@ -1,0 +1,137 @@
+{{- if .Values.apps.jackett.enabled -}}
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jackett
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "15"
+spec:
+  project: core
+  source:
+    repoURL: https://bananaspliff.github.io/geek-charts
+    targetRevision: 0.1.0
+    chart: jackett
+    helm:
+      values: |
+        {{- .Values.apps.jackett.valuesOverrides | toYaml | nindent 8 }}
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: jackett
+
+  # Sync policy
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true 
+      allowEmpty: false
+    syncOptions:
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 30s
+  revisionHistoryLimit: 3
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jackett-ingress
+  namespace: jackett
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/whitelist-source-range: 86.1.85.130/32,192.168.128.1/32
+spec:
+  tls:
+  - hosts:
+    - jackett.k8s.domingo.link
+    secretName: jackett-ingress-tls
+  rules:
+    - host: jackett.k8s.domingo.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jackett
+                port:
+                  number: 80
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jackett-nfs
+  namespace: jackett
+spec:
+  capacity:
+    storage: 6T
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.128.2
+    path: "/raid0/torrents"
+  mountOptions:
+    - nfsvers=4.2
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jackett-nfs
+  namespace: jackett
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 6T
+  volumeName: jackett-nfs
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jackett-config-nfs
+  namespace: jackett
+spec:
+  capacity:
+    storage: 6T
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.128.2
+    path: "/raid0/config/qbittorrentvpn"
+  mountOptions:
+    - nfsvers=4.2
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jackett-config-nfs
+  namespace: jackett
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 6T
+  volumeName: jackett-config-nfs
+
+{{- end -}}

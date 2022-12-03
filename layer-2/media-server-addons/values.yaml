@@ -20,6 +20,47 @@ apps:
   delugeOvpn:
     enabled: true
 
+  jackett:
+    enabled: true
+    valuesOverrides:
+      replicaCount: 1
+      image:
+        repository: "dyonr/jackettvpn" # Special image to use Jackett over a VPN
+        tag: "latest"
+        pullPolicy: IfNotPresent
+      env:
+        - name: VPN_ENABLED
+          value: "yes" # Enable Jackett over VPN
+        - name: VPN_TYPE
+          value: "openvpn" # Enable Jackett over VPN
+        - name: LAN_NETWORK
+          value: "10.0.0.0/8"
+        - name: CREATE_TUN_DEVICE
+          value: "true" # Needed for VPN
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: WEBUI_PORT
+          value: "80"
+      service:
+        type: ClusterIP
+        port: 80
+      volumes:
+        - name: "config"
+          persistentVolumeClaim:
+            claimName: "jackett-config-nfs"
+        - name: "downloads"
+          persistentVolumeClaim:
+            claimName: "jackett-nfs"
+      volumeMounts:
+        - name: "config"
+          mountPath: "/config"
+        - name: "downloads"
+          mountPath: "/blackhole"
+      securityContext:
+        privileged: true
+
   ombi:
     enabled: true
     valuesOverrides:
