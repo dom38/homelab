@@ -21,7 +21,7 @@ apps:
     enabled: true
 
   jackett:
-    enabled: false
+    enabled: true
     valuesOverrides:
       persistence:
         config:
