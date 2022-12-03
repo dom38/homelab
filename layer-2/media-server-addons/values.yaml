@@ -43,11 +43,9 @@ apps:
           value: "1000"
         - name: PGID
           value: "1000"
-        - name: WEBUI_PORT
-          value: "80"
       service:
         type: ClusterIP
-        port: 80
+        port: 9117
       volumes:
         - name: "config"
           persistentVolumeClaim:
