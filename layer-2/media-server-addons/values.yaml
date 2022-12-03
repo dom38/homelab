@@ -25,7 +25,7 @@ apps:
     valuesOverrides:
       persistence:
         config:
-          enabled: true
+          enabled: false
           existingClaim: jackett-config-nfs
           accessMode: ReadWriteMany
           size: 6T
