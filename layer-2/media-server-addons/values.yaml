@@ -35,6 +35,8 @@ apps:
           value: "openvpn" # Enable Jackett over VPN
         - name: LAN_NETWORK
           value: "10.0.0.0/8"
+        - name: NAME_SERVERS
+          value: "8.8.8.8,8.8.4.4"
         - name: CREATE_TUN_DEVICE
           value: "true" # Needed for VPN
         - name: PUID
