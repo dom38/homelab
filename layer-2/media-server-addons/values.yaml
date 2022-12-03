@@ -103,6 +103,12 @@ apps:
           accessMode: ReadWriteMany
           size: 6T
           type: pvc
+        torrents:
+          enabled: true
+          existingClaim: radarr-torrent-nfs
+          accessMode: ReadWriteMany
+          size: 6T
+          type: pvc
   
   sonarr:
     enabled: true
@@ -117,6 +123,12 @@ apps:
         data:
           enabled: true
           existingClaim: sonarr-nfs
+          accessMode: ReadWriteMany
+          size: 6T
+          type: pvc
+        torrents:
+          enabled: true
+          existingClaim: sonarr-torrent-nfs
           accessMode: ReadWriteMany
           size: 6T
           type: pvc
