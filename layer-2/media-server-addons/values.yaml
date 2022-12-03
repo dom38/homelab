@@ -32,7 +32,7 @@ apps:
           type: pvc
         torrentblackhole:
           enabled: true
-          existingClaim: jackett-config-nfs
+          existingClaim: jackett-nfs
           accessMode: ReadWriteMany
           size: 6T
           type: pvc
