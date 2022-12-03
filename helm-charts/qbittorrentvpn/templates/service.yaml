@@ -15,9 +15,5 @@ spec:
       targetPort: listen
       protocol: TCP
       name: listen
-    - port: 8999
-      targetPort: listenudp
-      protocol: TCP
-      name: listenudp
   selector:
     {{- include "qbittorrentvpn.selectorLabels" . | nindent 4 }}
