@@ -23,37 +23,52 @@ apps:
   jackett:
     enabled: true
     valuesOverrides:
-      securityContext:
-        privileged: true
-      replicaCount: 1
-      image:
-        repository: "alex171/jackettvpn" # Special image to use Jackett over a VPN
-        tag: "latest"
-        pullPolicy: IfNotPresent
-      env:
-        - name: VPN_ENABLED
-          value: "yes" # Enable Jackett over VPN
-        - name: VPN_TYPE
-          value: "openvpn" # Enable Jackett over VPN
-        - name: LAN_NETWORK
-          value: "10.0.0.0/8"
-        - name: NAME_SERVERS
-          value: "8.8.8.8,8.8.4.4"
-      service:
-        type: ClusterIP
-        port: 9117
-      volumes:
-        - name: "config"
-          persistentVolumeClaim:
-            claimName: "jackett-config-nfs"
-        - name: "downloads"
-          persistentVolumeClaim:
-            claimName: "jackett-nfs"
-      volumeMounts:
-        - name: "config"
-          mountPath: "/config"
-        - name: "downloads"
-          mountPath: "/blackhole"
+      persistence:
+        config:
+          enabled: true
+          existingClaim: jackett-config-nfs
+          accessMode: ReadWriteMany
+          size: 6T
+          type: pvc
+        torrentblackhole:
+          enabled: true
+          existingClaim: jackett-config-nfs
+          accessMode: ReadWriteMany
+          size: 6T
+          type: pvc
+          mountPath: /downloads
+
+      # securityContext:
+      #   privileged: true
+      # replicaCount: 1
+      # image:
+      #   repository: "alex171/jackettvpn" # Special image to use Jackett over a VPN
+      #   tag: "latest"
+      #   pullPolicy: IfNotPresent
+      # env:
+      #   - name: VPN_ENABLED
+      #     value: "yes" # Enable Jackett over VPN
+      #   - name: VPN_TYPE
+      #     value: "openvpn" # Enable Jackett over VPN
+      #   - name: LAN_NETWORK
+      #     value: "10.0.0.0/8"
+      #   - name: NAME_SERVERS
+      #     value: "8.8.8.8,8.8.4.4"
+      # service:
+      #   type: ClusterIP
+      #   port: 9117
+      # volumes:
+      #   - name: "config"
+      #     persistentVolumeClaim:
+      #       claimName: "jackett-config-nfs"
+      #   - name: "downloads"
+      #     persistentVolumeClaim:
+      #       claimName: "jackett-nfs"
+      # volumeMounts:
+      #   - name: "config"
+      #     mountPath: "/config"
+      #   - name: "downloads"
+      #     mountPath: "/blackhole"
 
   ombi:
     enabled: true

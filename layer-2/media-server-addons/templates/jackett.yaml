@@ -12,8 +12,10 @@ metadata:
 spec:
   project: core
   source:
-    repoURL: https://bananaspliff.github.io/geek-charts
-    targetRevision: 0.1.0
+    # repoURL: https://bananaspliff.github.io/geek-charts
+    # targetRevision: 0.1.0
+    repoURL: https://k8s-at-home.com/charts/
+    targetRevision: 11.7.2
     chart: jackett
     helm:
       values: |
