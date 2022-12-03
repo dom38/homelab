@@ -1,5 +1,8 @@
 apps:
 
+  heimdall:
+    enabled: true
+
   organizr:
     enabled: true
 
