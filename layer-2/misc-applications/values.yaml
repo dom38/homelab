@@ -9,15 +9,15 @@ apps:
   pihole:
     enabled: true
     valuesOverrides:
-      privileged: true
-      hostNetwork: true
-      webHttp: "31997" 
-      webHttps: "31998"
-      extraEnvVars:
-        TZ: "Europe/London" # Timezone
-        ServerIP: 192.168.128.2
-        DNSMASQ_USER: "root"
-        PIHOLE_UID: "0"
-      # serviceDns:
-      #   nodePort: 31999
-      #   mixedService: true
+      # privileged: true
+      # hostNetwork: true
+      # webHttp: "31997" 
+      # webHttps: "31998"
+      # extraEnvVars:
+      #   TZ: "Europe/London" # Timezone
+      #   ServerIP: 192.168.128.2
+      #   DNSMASQ_USER: "root"
+      #   PIHOLE_UID: "0"
+      serviceDns:
+        nodePort: 31999
+        mixedService: true
