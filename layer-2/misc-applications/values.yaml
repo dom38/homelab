@@ -13,11 +13,17 @@ apps:
       # hostNetwork: true
       # webHttp: "31997" 
       # webHttps: "31998"
-      # extraEnvVars:
-      #   TZ: "Europe/London" # Timezone
+      extraEnvVars:
+        TZ: "Europe/London" # Timezone
       #   ServerIP: 192.168.128.2
       #   DNSMASQ_USER: "root"
       #   PIHOLE_UID: "0"
-      serviceDns:
-        nodePort: 31999
-        mixedService: true
+      serviceTCP:
+        type: LoadBalancer # Configure MetalLB to used a dedicated "virtual" IP to expose the DNS server
+        annotations:
+          metallb.universe.tf/allow-shared-ip: pihole-svc
+
+      serviceUDP:
+        type: LoadBalancer # Configure MetalLB to used a dedicated "virtual" IP to expose the DNS server
+        annotations:
+          metallb.universe.tf/allow-shared-ip: pihole-svc
