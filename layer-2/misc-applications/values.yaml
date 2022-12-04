@@ -11,9 +11,11 @@ apps:
     valuesOverrides:
       privileged: true
       hostNetwork: true
+      webHttp: "31997" 
+      webHttps: "31998"
       extraEnvVars:
         TZ: "Europe/London" # Timezone
         ServerIP: 192.168.128.2
-      serviceDns:
-        nodePort: 31999
-        mixedService: true
+      # serviceDns:
+      #   nodePort: 31999
+      #   mixedService: true
