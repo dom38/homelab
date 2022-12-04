@@ -8,3 +8,6 @@ apps:
 
   pihole:
     enabled: true
+    valuesOverrides:
+      serviceDns:
+        nodePort: 31111
