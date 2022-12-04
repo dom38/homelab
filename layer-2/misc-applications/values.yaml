@@ -9,6 +9,7 @@ apps:
   pihole:
     enabled: true
     valuesOverrides:
+      privileged: true
       serviceDns:
         nodePort: 31999
         mixedService: true
