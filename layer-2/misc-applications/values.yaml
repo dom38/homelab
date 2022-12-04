@@ -11,3 +11,4 @@ apps:
     valuesOverrides:
       serviceDns:
         nodePort: 31999
+        mixedService: true
