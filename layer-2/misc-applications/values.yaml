@@ -10,4 +10,4 @@ apps:
     enabled: true
     valuesOverrides:
       serviceDns:
-        nodePort: 33333
+        nodePort: 31999
