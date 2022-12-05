@@ -90,6 +90,8 @@ apps:
   radarr:
     enabled: true
     valuesOverrides:
+      image:
+        tag: 4.2.4
       persistence:
         config:
           enabled: true
