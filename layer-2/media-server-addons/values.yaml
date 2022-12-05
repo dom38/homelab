@@ -113,6 +113,8 @@ apps:
   sonarr:
     enabled: true
     valuesOverrides:
+      image:
+        tag: 4.0.0-v4
       persistence:
         config:
           enabled: true
