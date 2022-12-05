@@ -98,7 +98,7 @@ apps:
           enabled: false
 
   podGateway:
-    enabled: true
+    enabled: false
     valuesOverrides:
       settings:
         VPN_INTERFACE: tun0
