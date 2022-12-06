@@ -4,7 +4,7 @@ apps:
     enabled: true
     valuesOverrides:
       image:
-        repository: emby/embyserver
+        repository: ghcr.io/onedr0p/emby
         tag: 4.7.10.0
       persistence:
         config:
