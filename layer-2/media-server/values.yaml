@@ -3,6 +3,8 @@ apps:
   emby:
     enabled: true
     valuesOverrides:
+      image:
+        tag: 4.7.10.0
       persistence:
         config:
           enabled: true
