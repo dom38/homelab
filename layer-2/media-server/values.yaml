@@ -37,6 +37,9 @@ apps:
   plex:
     enabled: true
     valuesOverrides:
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 1002
       env:
       - name: PLEX_CLAIM
         value: claim-ctv1GqKuDHjT7uHTyf41
