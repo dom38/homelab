@@ -28,7 +28,7 @@ apps:
         tag: 0.20.2318
       persistence:
         config:
-          enabled: false
+          enabled: true
           existingClaim: jackett-config-nfs
           accessMode: ReadWriteMany
           size: 6T

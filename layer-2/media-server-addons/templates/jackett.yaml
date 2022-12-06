@@ -116,7 +116,7 @@ spec:
     - ReadWriteMany
   nfs:
     server: 192.168.128.2
-    path: "/raid0/config/qbittorrentvpn"
+    path: "/raid0/config/jackett"
   mountOptions:
     - nfsvers=4.2
 
