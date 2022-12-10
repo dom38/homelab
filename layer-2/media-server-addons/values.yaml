@@ -40,6 +40,18 @@ apps:
           size: 6T
           type: pvc
           mountPath: /downloads
+      addons:
+        vpn:
+          enabled: true
+          type: openvpn
+          openvpn:
+            authSecret: openvpn
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+                - SYS_MODULE
+          configFileSecret: openvpn
 
       # securityContext:
       #   privileged: true
