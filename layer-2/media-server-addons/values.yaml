@@ -91,6 +91,8 @@ apps:
   ombi:
     enabled: true
     valuesOverrides:
+      image:
+        tag: 4.33.0-development
       persistence:
         config:
           enabled: true
