@@ -160,7 +160,7 @@ apps:
       persistence:
           config:
             enabled: true
-            existingClaim: jackett-config-nfs
+            existingClaim: tautulli-config-nfs
             accessMode: ReadWriteMany
             size: 6T
             type: pvc
