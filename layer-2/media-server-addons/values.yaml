@@ -44,6 +44,9 @@ apps:
         vpn:
           enabled: true
           type: openvpn
+          env:
+            - name: DNS
+              value: "8.8.4.4"
           openvpn:
             authSecret: openvpn
           securityContext:
