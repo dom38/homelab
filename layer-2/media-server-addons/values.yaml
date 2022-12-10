@@ -156,6 +156,14 @@ apps:
 
   tautulli:
     enabled: true
+    valuesOverrides:
+      persistence:
+          config:
+            enabled: true
+            existingClaim: jackett-config-nfs
+            accessMode: ReadWriteMany
+            size: 6T
+            type: pvc
 
   transmission:
     enabled: false

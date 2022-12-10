@@ -66,5 +66,37 @@ spec:
                 port:
                   number: 8181
 
+---
 
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: tautulli-config-nfs
+  namespace: tautulli
+spec:
+  capacity:
+    storage: 6T
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.128.2
+    path: "/raid0/config/tautulli"
+  mountOptions:
+    - nfsvers=4.2
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tautulli-config-nfs
+  namespace: tautulli
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 6T
+  volumeName: tautulli-config-nfs
 {{- end -}}
