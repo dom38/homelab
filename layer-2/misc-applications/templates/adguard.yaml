@@ -62,7 +62,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: main
+                name: adguard-adguard-home
                 port:
                   number: 3000
 {{- end -}}
