@@ -1,5 +1,8 @@
 apps:
 
+  adguard:
+    enabled: true
+
   heimdall:
     enabled: true
 
@@ -7,7 +10,7 @@ apps:
     enabled: true
 
   pihole:
-    enabled: true
+    enabled: false
     valuesOverrides:
       # privileged: true
       # hostNetwork: true

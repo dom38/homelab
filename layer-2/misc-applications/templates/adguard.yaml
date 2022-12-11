@@ -1,0 +1,68 @@
+{{- if .Values.apps.adguard.enabled -}}
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: adguard
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "15"
+spec:
+  project: core
+  source:
+    repoURL: https://geek-cookbook.github.io/charts/
+    targetRevision: 5.5.2
+    chart: adguard-home
+    helm:
+      values: |
+        {{- .Values.apps.adguard.valuesOverrides | toYaml | nindent 8 }}
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: adguard
+
+  # Sync policy
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true 
+      allowEmpty: false
+    syncOptions:
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 30s
+  revisionHistoryLimit: 3
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: adguard-ingress
+  namespace: adguard
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/whitelist-source-range: 86.1.85.130/32,192.168.128.1/32
+spec:
+  tls:
+  - hosts:
+    - adguard.k8s.domingo.link
+    secretName: adguard-ingress-tls
+  rules:
+    - host: adguard.k8s.domingo.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: main
+                port:
+                  number: 3000
+{{- end -}}
