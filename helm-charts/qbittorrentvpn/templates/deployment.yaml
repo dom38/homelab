@@ -43,7 +43,7 @@ spec:
           - name: LAN_NETWORK
             value: "10.0.0.0/8"
           - name: NAME_SERVERS
-            value: "192.168.128.2"
+            value: "8.8.8.8,8.8.4.4"
           ports:
             - name: http
               containerPort: 8080
