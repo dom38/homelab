@@ -10,7 +10,7 @@ apps:
         tag: 4.7.10.0
       persistence:
         config:
-          enabled: true
+          enabled: false
           existingClaim: emby-config-nfs
           accessMode: ReadWriteMany
           size: 6T
