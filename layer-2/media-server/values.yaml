@@ -3,10 +3,10 @@ apps:
   emby:
     enabled: true
     valuesOverrides:
-      securityContext:
-        runAsUser: 1001
-        runAsGroup: 1001
-        fsGroup: 1001
+      # securityContext:
+      #   runAsUser: 1001
+      #   runAsGroup: 1001
+      #   fsGroup: 1001
       image:
         repository: ghcr.io/onedr0p/emby
         tag: 4.7.10.0
