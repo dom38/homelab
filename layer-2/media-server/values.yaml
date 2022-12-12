@@ -3,6 +3,8 @@ apps:
   emby:
     enabled: true
     valuesOverrides:
+      securityContext:
+        privileged: true
       image:
         repository: ghcr.io/onedr0p/emby
         tag: 4.7.10.0
