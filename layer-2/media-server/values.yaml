@@ -3,7 +3,7 @@ apps:
   emby:
     enabled: true
     valuesOverrides:
-      securityContext:
+      podSecurityContext:
         privileged: true
       image:
         repository: ghcr.io/onedr0p/emby
