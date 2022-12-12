@@ -110,12 +110,9 @@ spec:
   capacity:
     storage: 6T
   accessModes:
-    - ReadWriteMany
-  nfs:
-    server: 192.168.128.2
+    - ReadWriteOnce
+  hostPath:
     path: "/raid0/config/emby"
-  mountOptions:
-    - nfsvers=4.2
 
 ---
 
@@ -126,7 +123,7 @@ metadata:
   namespace: emby
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   storageClassName: ""
   resources:
     requests:
