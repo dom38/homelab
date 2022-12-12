@@ -124,7 +124,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: ""
+  storageClassName: "microk8s-hostpath"
   resources:
     requests:
       storage: 6T
