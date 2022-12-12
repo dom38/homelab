@@ -121,7 +121,7 @@ metadata:
 provisioner: microk8s.io/hostpath
 reclaimPolicy: Delete
 parameters:
-  pvDir: /raid0/config/emby
+  pvDir: /mnt/raid0/config/emby
 volumeBindingMode: WaitForFirstConsumer
 
 ---
