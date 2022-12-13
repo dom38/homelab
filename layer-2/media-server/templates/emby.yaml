@@ -115,16 +115,6 @@ spec:
   hostPath:
     path: "/mnt/raid0/config/emby"
 
-# kind: StorageClass
-# apiVersion: storage.k8s.io/v1
-# metadata:
-#   name: emby-config
-# provisioner: microk8s.io/hostpath
-# reclaimPolicy: Delete
-# parameters:
-#   pvDir: /mnt/raid0/config/emby
-# volumeBindingMode: WaitForFirstConsumer
-
 ---
 
 apiVersion: v1
