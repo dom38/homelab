@@ -129,7 +129,7 @@ metadata:
   namespace: nextcloud
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   storageClassName: hostpath
   resources:
     requests:

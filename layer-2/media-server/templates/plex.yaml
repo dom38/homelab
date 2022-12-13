@@ -124,7 +124,7 @@ metadata:
   namespace: plex
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   storageClassName: hostpath
   resources:
     requests:

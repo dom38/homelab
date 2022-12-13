@@ -125,7 +125,7 @@ metadata:
   namespace: radarr
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   storageClassName: hostpath
   resources:
     requests:

@@ -90,7 +90,7 @@ metadata:
   namespace: ombi
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   storageClassName: hostpath
   resources:
     requests:
