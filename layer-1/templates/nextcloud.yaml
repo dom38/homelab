@@ -111,15 +111,14 @@ metadata:
   name: nextcloud-nfs-data
   namespace: nextcloud
 spec:
+  storageClassName: hostpath
   capacity:
     storage: 6T
   accessModes:
-    - ReadWriteMany
-  nfs:
-    server: 192.168.128.2
-    path: "/raid0/nextcloud/mariadb"
-  mountOptions:
-    - nfsvers=4.2
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/raid0/nextcloud/mariadb"
+  
 
 ---
 
