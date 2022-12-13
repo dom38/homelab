@@ -58,7 +58,7 @@ apps:
     enabled: true
 
   nextcloud:
-    enabled: false
+    enabled: true
     valuesOverrides:
       livenessProbe:
         enabled: false
