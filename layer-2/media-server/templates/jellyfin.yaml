@@ -125,7 +125,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: ""
+  storageClassName: hostpath
   resources:
     requests:
       storage: 6T
