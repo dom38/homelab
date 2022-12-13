@@ -108,15 +108,13 @@ metadata:
   name: sonarr-config-nfs
   namespace: sonarr
 spec:
+  storageClassName: hostpath
   capacity:
     storage: 6T
   accessModes:
-    - ReadWriteMany
-  nfs:
-    server: 192.168.128.2
-    path: "/raid0/config/sonarr"
-  mountOptions:
-    - nfsvers=4.2
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/raid0/config/sonarr"
 
 ---
 
