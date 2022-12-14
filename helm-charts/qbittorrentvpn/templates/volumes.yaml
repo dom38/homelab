@@ -4,15 +4,13 @@ metadata:
   name: qbittorrent-torrent-nfs
   namespace: qbittorrentvpn
 spec:
+  storageClassName: hostpath
   capacity:
     storage: 6T
   accessModes:
-    - ReadWriteMany
-  nfs:
-    server: 192.168.128.2
-    path: "/raid0/torrents"
-  mountOptions:
-    - nfsvers=4.2
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/raid0/torrents"
 
 ---
 
@@ -22,9 +20,9 @@ metadata:
   name: qbittorrent-torrent-nfs
   namespace: qbittorrentvpn
 spec:
+  storageClassName: hostpath
   accessModes:
-    - ReadWriteMany
-  storageClassName: ""
+    - ReadWriteOnce
   resources:
     requests:
       storage: 6T
@@ -38,16 +36,13 @@ metadata:
   name: qbittorrent-config-nfs
   namespace: qbittorrentvpn
 spec:
+  storageClassName: hostpath
   capacity:
     storage: 6T
   accessModes:
-    - ReadWriteMany
-  nfs:
-    server: 192.168.128.2
+    - ReadWriteOnce
+  hostPath:
     path: "/raid0/config/qbittorrentvpn"
-  mountOptions:
-    - nfsvers=4.2
-
 ---
 
 apiVersion: v1
@@ -56,9 +51,9 @@ metadata:
   name: qbittorrent-config-nfs
   namespace: qbittorrentvpn
 spec:
+  storageClassName: hostpath
   accessModes:
-    - ReadWriteMany
-  storageClassName: ""
+    - ReadWriteOnce
   resources:
     requests:
       storage: 6T

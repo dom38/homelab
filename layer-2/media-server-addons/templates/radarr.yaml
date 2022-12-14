@@ -74,15 +74,13 @@ metadata:
   name: radarr-nfs
   namespace: radarr
 spec:
+  storageClassName: hostpath
   capacity:
     storage: 6T
   accessModes:
-    - ReadWriteMany
-  nfs:
-    server: 192.168.128.2
-    path: "/raid0/media-server"
-  mountOptions:
-    - nfsvers=4.2
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/raid0/media-server"
 
 ---
 
@@ -92,9 +90,9 @@ metadata:
   name: radarr-nfs
   namespace: radarr
 spec:
+  storageClassName: hostpath
   accessModes:
-    - ReadWriteMany
-  storageClassName: ""
+    - ReadWriteOnce
   resources:
     requests:
       storage: 6T
@@ -139,15 +137,13 @@ metadata:
   name: radarr-torrent-nfs
   namespace: radarr
 spec:
+  storageClassName: hostpath
   capacity:
     storage: 6T
   accessModes:
-    - ReadWriteMany
-  nfs:
-    server: 192.168.128.2
-    path: "/raid0/torrents"
-  mountOptions:
-    - nfsvers=4.2
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/raid0/torrents"
 
 ---
 
@@ -157,9 +153,9 @@ metadata:
   name: radarr-torrent-nfs
   namespace: radarr
 spec:
+  storageClassName: hostpath
   accessModes:
-    - ReadWriteMany
-  storageClassName: ""
+    - ReadWriteOnce
   resources:
     requests:
       storage: 6T
