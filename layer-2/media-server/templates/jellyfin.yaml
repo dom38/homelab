@@ -73,7 +73,7 @@ metadata:
   name: jellyfin-nfs
   namespace: jellyfin
 spec:
-storageClassName: hostpath
+  storageClassName: hostpath
   capacity:
     storage: 6T
   accessModes:
