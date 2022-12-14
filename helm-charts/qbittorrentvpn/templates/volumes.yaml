@@ -42,7 +42,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/raid0/config/qbittorrentvpn"
+    path: "/mnt/raid0/config/qbittorrentvpn"
 ---
 
 apiVersion: v1
