@@ -48,7 +48,7 @@ metadata:
   namespace: tautulli
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    nginx.ingress.kubernetes.io/whitelist-source-range: 84.17.47.124/32,192.168.128.1/32
+    nginx.ingress.kubernetes.io/whitelist-source-range: 86.1.85.130/32,192.168.128.1/32
 spec:
   tls:
   - hosts:
