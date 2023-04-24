@@ -1,7 +1,7 @@
 apps:
 
   adguard:
-    enabled: true
+    enabled: false
     valuesOverrides:
       hostNetwork: true
       securityContext:
@@ -13,10 +13,10 @@ apps:
             - NET_BIND_SERVICE
 
   heimdall:
-    enabled: true
+    enabled: false
 
   organizr:
-    enabled: true
+    enabled: false
 
   pihole:
     enabled: false
