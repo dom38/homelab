@@ -25,7 +25,7 @@ apps:
     valuesOverrides:
       image:
         repository: linuxserver/jackett
-        tag: 0.20.2318
+        tag: 0.20.3985
       persistence:
         config:
           enabled: true
@@ -108,7 +108,7 @@ apps:
     enabled: true
     valuesOverrides:
       image:
-        tag: 4.2.4
+        tag: 4.4.4
       persistence:
         config:
           enabled: true

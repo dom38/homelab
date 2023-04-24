@@ -9,7 +9,7 @@ apps:
       #   fsGroup: 1001
       image:
         repository: ghcr.io/onedr0p/emby
-        tag: 4.7.10.0
+        tag: 4.7.11.0
       persistence:
         config:
           enabled: true
@@ -27,6 +27,8 @@ apps:
   jellyfin:
     enabled: true
     valuesOverrides:
+      image:
+        tag: 10.8.10
       persistence:
         config:
           enabled: true
@@ -44,6 +46,8 @@ apps:
   plex:
     enabled: true
     valuesOverrides:
+      image:
+        tag: 1.32.0
       env:
       - name: PLEX_CLAIM
         value: claim-ctv1GqKuDHjT7uHTyf41
