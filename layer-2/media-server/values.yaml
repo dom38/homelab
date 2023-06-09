@@ -49,10 +49,10 @@ apps:
       automountServiceAccountToken: false
       resources:
         requests: 
-          cpu: 2000m
-          memory: 500Mi
+          cpu: 6000m
+          memory: 2000Mi
         limits:
-          cpu: 4000m
+          cpu: 8000m
           memory: 4000Mi
       image:
         tag: 1.32.3
