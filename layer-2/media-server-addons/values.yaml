@@ -155,7 +155,7 @@ apps:
           type: pvc
 
   tautulli:
-    enabled: true
+    enabled: false
     valuesOverrides:
       persistence:
           config:
