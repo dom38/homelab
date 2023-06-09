@@ -50,7 +50,7 @@ apps:
       resources:
         requests: 
           cpu: 2
-          memory: 2000
+          memory: 500
         limits:
           cpu: 4
           memory: 4000
