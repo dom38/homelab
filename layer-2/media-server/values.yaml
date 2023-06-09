@@ -46,6 +46,7 @@ apps:
   plex:
     enabled: true
     valuesOverrides:
+      automountServiceAccountToken: false
       resources:
         requests: 
           cpu: 2
