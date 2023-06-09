@@ -46,6 +46,13 @@ apps:
   plex:
     enabled: true
     valuesOverrides:
+      resources:
+        requests: 
+          cpu: 2
+          memory: 2000
+        limits:
+          cpu: 4
+          memory: 4000
       image:
         tag: 1.32.0
       env:
