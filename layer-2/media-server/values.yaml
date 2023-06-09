@@ -55,7 +55,8 @@ apps:
           cpu: 4000m
           memory: 4000Mi
       image:
-        tag: 1.32.0
+        tag: 1.32.3
+        repository: linuxserver/plex
       env:
       - name: PLEX_CLAIM
         value: claim-ctv1GqKuDHjT7uHTyf41
