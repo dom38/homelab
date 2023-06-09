@@ -3,10 +3,14 @@ apps:
   emby:
     enabled: true
     valuesOverrides:
-      # securityContext:
-      #   runAsUser: 1001
-      #   runAsGroup: 1001
-      #   fsGroup: 1001
+      automountServiceAccountToken: false
+      resources:
+        requests: 
+          cpu: 2000m
+          memory: 2000Mi
+        limits:
+          cpu: 8000m
+          memory: 4000Mi
       image:
         repository: ghcr.io/onedr0p/emby
         tag: 4.7.11.0
@@ -27,6 +31,14 @@ apps:
   jellyfin:
     enabled: true
     valuesOverrides:
+      automountServiceAccountToken: false
+      resources:
+        requests: 
+          cpu: 2000m
+          memory: 2000Mi
+        limits:
+          cpu: 8000m
+          memory: 4000Mi
       image:
         tag: 10.8.10
       persistence:
