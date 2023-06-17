@@ -3,6 +3,9 @@ apps:
   bazarr:
     enabled: true
     valuesOverrides:
+      image:
+        tag: 1.2.2-development
+        repository: linuxserver/bazarr
       persistence:
         config:
           enabled: true
@@ -76,7 +79,8 @@ apps:
     enabled: true
     valuesOverrides:
       image:
-        tag: 4.4.4
+        tag: 4.6.1-develop
+        repository: linuxserver/radarr
       persistence:
         config:
           enabled: true
@@ -101,7 +105,8 @@ apps:
     enabled: true
     valuesOverrides:
       image:
-        tag: 4.0.0-v4
+        tag: 3.0.10
+        repository: linuxserver/sonarr
       persistence:
         config:
           enabled: true
