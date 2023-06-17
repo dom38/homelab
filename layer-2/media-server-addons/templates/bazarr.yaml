@@ -12,8 +12,8 @@ metadata:
 spec:
   project: core
   source:
-    repoURL: https://aste88.github.io/helm-charts
-    targetRevision: 11.0.0
+    repoURL: https://k8s-at-home.com/charts/
+    targetRevision: 10.6.2
     chart: bazarr
     helm:
       values: |
