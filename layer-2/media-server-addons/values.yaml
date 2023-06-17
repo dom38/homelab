@@ -105,7 +105,7 @@ apps:
     enabled: true
     valuesOverrides:
       image:
-        tag: 3.0.10
+        tag: 4.0.0-develop
         repository: linuxserver/sonarr
       persistence:
         config:
