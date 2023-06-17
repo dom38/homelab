@@ -7,13 +7,13 @@ apps:
         config:
           enabled: true
           existingClaim: bazarr-config-nfs
-          accessMode: ReadWriteMany
+          accessMode: ReadWriteOnce
           size: 6T
           type: pvc
         data:
           enabled: true
           existingClaim: bazarr-nfs
-          accessMode: ReadWriteMany
+          accessMode: ReadWriteOnce
           size: 6T
           type: pvc
   
@@ -30,13 +30,13 @@ apps:
         config:
           enabled: true
           existingClaim: jackett-config-nfs
-          accessMode: ReadWriteMany
+          accessMode: ReadWriteOnce
           size: 6T
           type: pvc
         torrentblackhole:
           enabled: true
           existingClaim: jackett-nfs
-          accessMode: ReadWriteMany
+          accessMode: ReadWriteOnce
           size: 6T
           type: pvc
           mountPath: /downloads
@@ -56,38 +56,6 @@ apps:
                 - SYS_MODULE
           configFileSecret: openvpn
 
-      # securityContext:
-      #   privileged: true
-      # replicaCount: 1
-      # image:
-      #   repository: "alex171/jackettvpn" # Special image to use Jackett over a VPN
-      #   tag: "latest"
-      #   pullPolicy: IfNotPresent
-      # env:
-      #   - name: VPN_ENABLED
-      #     value: "yes" # Enable Jackett over VPN
-      #   - name: VPN_TYPE
-      #     value: "openvpn" # Enable Jackett over VPN
-      #   - name: LAN_NETWORK
-      #     value: "10.0.0.0/8"
-      #   - name: NAME_SERVERS
-      #     value: "8.8.8.8,8.8.4.4"
-      # service:
-      #   type: ClusterIP
-      #   port: 9117
-      # volumes:
-      #   - name: "config"
-      #     persistentVolumeClaim:
-      #       claimName: "jackett-config-nfs"
-      #   - name: "downloads"
-      #     persistentVolumeClaim:
-      #       claimName: "jackett-nfs"
-      # volumeMounts:
-      #   - name: "config"
-      #     mountPath: "/config"
-      #   - name: "downloads"
-      #     mountPath: "/blackhole"
-
   ombi:
     enabled: true
     valuesOverrides:
@@ -97,7 +65,7 @@ apps:
         config:
           enabled: true
           existingClaim: ombi-config-nfs
-          accessMode: ReadWriteMany
+          accessMode: ReadWriteOnce
           size: 6T
           type: pvc
 
@@ -113,19 +81,19 @@ apps:
         config:
           enabled: true
           existingClaim: radarr-config-nfs
-          accessMode: ReadWriteMany
+          accessMode: ReadWriteOnce
           size: 6T
           type: pvc
         data:
           enabled: true
           existingClaim: radarr-nfs
-          accessMode: ReadWriteMany
+          accessMode: ReadWriteOnce
           size: 6T
           type: pvc
         torrents:
           enabled: true
           existingClaim: radarr-torrent-nfs
-          accessMode: ReadWriteMany
+          accessMode: ReadWriteOnce
           size: 6T
           type: pvc
   
@@ -138,19 +106,19 @@ apps:
         config:
           enabled: true
           existingClaim: sonarr-config-nfs
-          accessMode: ReadWriteMany
+          accessMode: ReadWriteOnce
           size: 6T
           type: pvc
         data:
           enabled: true
           existingClaim: sonarr-nfs
-          accessMode: ReadWriteMany
+          accessMode: ReadWriteOnce
           size: 6T
           type: pvc
         torrents:
           enabled: true
           existingClaim: sonarr-torrent-nfs
-          accessMode: ReadWriteMany
+          accessMode: ReadWriteOnce
           size: 6T
           type: pvc
 
@@ -161,30 +129,9 @@ apps:
           config:
             enabled: true
             existingClaim: tautulli-config-nfs
-            accessMode: ReadWriteMany
+            accessMode: ReadWriteOnce
             size: 6T
             type: pvc
 
   transmission:
     enabled: false
-    valuesOverrides:
-      probes:
-        liveness:
-          enabled: false
-        readiness:
-          enabled: false
-        startup:
-          enabled: false
-      persistence:
-        config:
-          enabled: true
-          existingClaim: transmission-config-nfs
-          accessMode: ReadWriteMany
-          size: 6T
-          type: pvc
-        torrents:
-          enabled: true
-          existingClaim: transmission-nfs
-          accessMode: ReadWriteMany
-          size: 6T
-          type: pvc
