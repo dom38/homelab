@@ -1,7 +1,7 @@
 apps:
 
   emby:
-    enabled: true
+    enabled: false
     valuesOverrides:
       automountServiceAccountToken: false
       resources:
@@ -29,7 +29,7 @@ apps:
           type: pvc
   
   jellyfin:
-    enabled: true
+    enabled: false
     valuesOverrides:
       automountServiceAccountToken: false
       resources:
@@ -76,12 +76,12 @@ apps:
         config:
           enabled: true
           existingClaim: plex-config-nfs
-          accessMode: ReadWriteMany
+          accessMode: ReadWriteOnce
           size: 6T
           type: pvc
         data:
           enabled: true
           existingClaim: plex-nfs
-          accessMode: ReadWriteMany
+          accessMode: ReadWriteOnce
           size: 6T
           type: pvc
