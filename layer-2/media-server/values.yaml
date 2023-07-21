@@ -1,7 +1,7 @@
 apps:
 
   emby:
-    enabled: false
+    enabled: true
     valuesOverrides:
       automountServiceAccountToken: false
       resources:
