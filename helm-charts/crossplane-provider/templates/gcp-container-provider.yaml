@@ -3,4 +3,4 @@ kind: Provider
 metadata:
   name: provider-gcp-gke
 spec:
-  package: xpkg.upbound.io/upbound/provider-gcp-gke:v0.38.1
+  package: xpkg.upbound.io/upbound/provider-gcp-container:v0.38.1
