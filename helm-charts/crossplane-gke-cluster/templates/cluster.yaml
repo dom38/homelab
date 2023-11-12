@@ -6,6 +6,7 @@ spec:
   providerConfigRef:
     name: gcp-config
   forProvider:
+    initialNodeCount: 1
     initialClusterVersion: "1.27"
     location: europe-west1-b
     autoscaling:
