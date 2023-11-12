@@ -1,27 +1,27 @@
-{{- if .Values.apps.crossplaneProvider.enabled -}}
+{{- if .Values.apps.crossplaneGkeCluster.enabled -}}
 
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: crossplane-provider
+  name: crossplane-gke-cluster
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "20"
+    argocd.argoproj.io/sync-wave: "25"
 spec:
   project: core
   source:
     repoURL: https://github.com/dom38/homelab.git
     targetRevision: main
-    path: helm-charts/crossplane-provider
+    path: helm-charts/crossplane-gke-cluster
     helm:
       values: |
-        {{- .Values.apps.crossplaneProvider.valuesOverrides | toYaml | nindent 8 }}
+        {{- .Values.apps.crossplaneGkeCluster.valuesOverrides | toYaml | nindent 8 }}
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: crossplane-provider
+    namespace: crossplane-gke-cluster
 
   # Sync policy
   syncPolicy:
@@ -39,6 +39,4 @@ spec:
         duration: 30s
   revisionHistoryLimit: 3
 
----
-
-{{- end -}}
+{{- end }}

@@ -14,6 +14,8 @@ apps:
 
   crossplane:
     enabled: true
+  crossplaneGkeCluster:
+    enabled: true
   crossplaneProvider:
     enabled: true
   heimdall:
