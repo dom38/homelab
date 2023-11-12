@@ -1,4 +1,4 @@
-apiVersion: container.gcp.crossplane.io/v1beta1
+apiVersion: clusters.container.gcp.upbound.io/v1beta1
 kind: Cluster
 metadata:
   name: test-cluster
