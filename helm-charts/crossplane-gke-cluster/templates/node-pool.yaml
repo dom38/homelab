@@ -1,4 +1,4 @@
-apiVersion: nodepools.container.gcp.crossplane.io/v1beta1
+apiVersion: container.gcp.upbound.io/v1beta1
 kind: NodePool
 metadata:
   name: test-node-pool
