@@ -7,24 +7,6 @@ spec:
     name: gcp-config
   forProvider:
     clusterRef:
-      name: test-cluster
-    config:
-      serviceAccount: sa-test
-      machineType: n1-standard-1
-      sandboxConfig:
-        type: gvisor
-      diskSizeGb: 120
-      diskType: pd-ssd
-      imageType: cos_containerd
-      labels:
-        test-label: crossplane-managed
-      oauthScopes:
-      - "https://www.googleapis.com/auth/devstorage.read_only"
-      - "https://www.googleapis.com/auth/logging.write"
-      - "https://www.googleapis.com/auth/monitoring"
-      - "https://www.googleapis.com/auth/servicecontrol"
-      - "https://www.googleapis.com/auth/service.management.readonly"
-      - "https://www.googleapis.com/auth/trace.append"      
+      name: test-cluster     
     initialNodeCount: 1
-    locations:
-      - "europe-west1-b"
+    location: europe-west1-b
