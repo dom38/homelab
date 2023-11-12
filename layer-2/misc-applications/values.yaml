@@ -14,7 +14,7 @@ apps:
 
   crossplane:
     enabled: true
-  crossplane-provider:
+  crossplaneProvider:
     enabled: true
   heimdall:
     enabled: false
