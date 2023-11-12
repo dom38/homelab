@@ -3,6 +3,8 @@ kind: NodePool
 metadata:
   name: test-node-pool
 spec:
+  providerConfigRef:
+    name: gcp-config
   forProvider:
     clusterRef:
       name: test-cluster
