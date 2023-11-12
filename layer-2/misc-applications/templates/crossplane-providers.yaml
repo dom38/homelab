@@ -1,9 +1,9 @@
-{{- if .Values.apps.crossplane.enabled -}}
+{{- if .Values.apps.crossplaneProvider.enabled -}}
 
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: crossplane
+  name: crossplane-provider
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -12,16 +12,16 @@ metadata:
 spec:
   project: core
   source:
-    repoURL: https://charts.crossplane.io/stable
-    targetRevision:  1.9.2
-    chart: crossplane
+    repoURL: https://github.com/dom38/homelab.git
+    targetRevision: main
+    path: helm-charts/crossplane-provider
     helm:
       values: |
-        {{- .Values.apps.crossplane.valuesOverrides | toYaml | nindent 8 }}
+        {{- .Values.apps.crossplaneProvider.valuesOverrides | toYaml | nindent 8 }}
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: crossplane-system
+    namespace: crossplane-provider
 
   # Sync policy
   syncPolicy:
@@ -39,4 +39,6 @@ spec:
         duration: 30s
   revisionHistoryLimit: 3
 
-{{- end }}
+---
+
+{{- end -}}
