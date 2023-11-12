@@ -4,11 +4,6 @@ metadata:
   name: test-node-pool
 spec:
   forProvider:
-    autoscaling:
-      autoprovisioned: false
-      enabled: true
-      maxNodeCount: 3
-      minNodeCount: 1  
     clusterRef:
       name: test-cluster
     config:

@@ -13,9 +13,6 @@ spec:
       enableIntraNodeVisibility: true
     loggingService: logging.googleapis.com/kubernetes
     monitoringService: monitoring.googleapis.com/kubernetes
-    addonsConfig:
-      gcePersistentDiskCsiDriverConfig:
-        enabled: true
     network: "default"
   writeConnectionSecretToRef:
     namespace: {{ .Release.Namespace }}
