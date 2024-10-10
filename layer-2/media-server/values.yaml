@@ -1,7 +1,7 @@
 apps:
 
   emby:
-    enabled: true
+    enabled: false
     valuesOverrides:
       automountServiceAccountToken: false
       resources:
@@ -67,7 +67,7 @@ apps:
           cpu: 8000m
           memory: 4000Mi
       image:
-        tag: 1.32.3
+        tag: latest
         repository: linuxserver/plex
       env:
       - name: PLEX_CLAIM
