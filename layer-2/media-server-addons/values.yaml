@@ -4,7 +4,7 @@ apps:
     enabled: true
     valuesOverrides:
       image:
-        tag: 1.2.2-development
+        tag: latest
         repository: linuxserver/bazarr
       persistence:
         config:
@@ -28,7 +28,7 @@ apps:
     valuesOverrides:
       image:
         repository: linuxserver/jackett
-        tag: 0.21.987
+        tag: latest
       persistence:
         config:
           enabled: true
@@ -79,7 +79,7 @@ apps:
     enabled: true
     valuesOverrides:
       image:
-        tag: 4.6.1-develop
+        tag: latest
         repository: linuxserver/radarr
       persistence:
         config:
@@ -105,7 +105,7 @@ apps:
     enabled: true
     valuesOverrides:
       image:
-        tag: 4.0.0-develop
+        tag: latest
         repository: linuxserver/sonarr
       persistence:
         config:
