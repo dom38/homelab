@@ -140,3 +140,41 @@ apps:
 
   transmission:
     enabled: false
+
+  unpackerr:
+    enabled: true
+    valuesOverrides:
+      image:
+        tag: latest
+        repository: golift/unpackerr
+      env:
+        - UN_SONARR_0_URL=https://sonarr.k8s.domingo.link
+        - UN_SONARR_0_API_KEY=2503e39a934746f096b421ae3c7c8edd
+        - UN_SONARR_0_PATHS_0=/torrents
+        - UN_SONARR_0_PROTOCOLS=torrent
+        - UN_SONARR_0_TIMEOUT=10s
+        - UN_SONARR_0_DELETE_DELAY=5m
+        - UN_SONARR_0_DELETE_ORIG=true
+        - UN_SONARR_0_SYNCTHING=false
+      service:
+        main:
+          enabled: true
+      persistence:
+        config:
+          enabled: true
+          existingClaim: unpackerr-config-nfs
+          accessMode: ReadWriteOnce
+          size: 6T
+          type: pvc
+        data:
+          enabled: true
+          existingClaim: unpackerr-nfs
+          accessMode: ReadWriteOnce
+          size: 6T
+          type: pvc
+        torrents:
+          enabled: true
+          existingClaim: unpackerr-torrent-nfs
+          accessMode: ReadWriteOnce
+          size: 6T
+          type: pvc

@@ -1,0 +1,165 @@
+{{- if .Values.apps.unpackerr.enabled -}}
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: unpackerr
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "15"
+spec:
+  project: core
+  source:
+    repoURL: https://k8s-at-home.com/charts/
+    targetRevision: 16.3.2
+    chart: unpackerr
+    helm:
+      values: |
+        {{- .Values.apps.unpackerr.valuesOverrides | toYaml | nindent 8 }}
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: unpackerr
+
+  # Sync policy
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true 
+      allowEmpty: false
+    syncOptions:
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 30s
+  revisionHistoryLimit: 3
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: unpackerr-ingress
+  namespace: unpackerr
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/whitelist-source-range: 86.1.85.130/32,192.168.128.1/32
+spec:
+  tls:
+  - hosts:
+    - unpackerr.k8s.domingo.link
+    secretName: unpackerr-ingress-tls
+  rules:
+    - host: unpackerr.k8s.domingo.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: unpackerr
+                port:
+                  number: 5656
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: unpackerr-nfs
+  namespace: unpackerr
+spec:
+  storageClassName: hostpath
+  capacity:
+    storage: 6T
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/raid0/media-server"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: unpackerr-nfs
+  namespace: unpackerr
+spec:
+  storageClassName: hostpath
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 6T
+  volumeName: unpackerr-nfs
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: unpackerr-config-nfs
+  namespace: unpackerr
+spec:
+  storageClassName: hostpath
+  capacity:
+    storage: 6T
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/raid0/config/unpackerr"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: unpackerr-config-nfs
+  namespace: unpackerr
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: hostpath
+  resources:
+    requests:
+      storage: 6T
+  volumeName: unpackerr-config-nfs
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: unpackerr-torrent-nfs
+  namespace: unpackerr
+spec:
+  storageClassName: hostpath
+  capacity:
+    storage: 6T
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/raid0/torrents"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: unpackerr-torrent-nfs
+  namespace: unpackerr
+spec:
+  storageClassName: hostpath
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 6T
+  volumeName: unpackerr-torrent-nfs
+
+{{- end -}}
