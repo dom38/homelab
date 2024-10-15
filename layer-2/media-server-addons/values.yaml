@@ -154,7 +154,7 @@ apps:
         UN_SONARR_0_PROTOCOLS: torrent
         UN_SONARR_0_TIMEOUT: 10s
         UN_SONARR_0_DELETE_DELAY: 5m
-        UN_SONARR_0_DELETE_ORIG: true
+        UN_SONARR_0_DELETE_ORIG: false
         UN_SONARR_0_SYNCTHING: false
       service:
         main:
