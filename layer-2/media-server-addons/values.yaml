@@ -158,7 +158,7 @@ apps:
         UN_SONARR_0_SYNCTHING: false
       service:
         main:
-          enabled: true
+          enabled: false
       persistence:
         config:
           enabled: true
