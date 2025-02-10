@@ -24,7 +24,7 @@ apps:
     enabled: true
     valuesOverrides:
       image:
-        tag: develop
+        tag: latest
         repository: linuxserver/calibre
       persistence:
         config:
@@ -131,7 +131,7 @@ apps:
     enabled: true
     valuesOverrides:
       image:
-        tag: latest
+        tag: develop
         repository: linuxserver/readarr
       persistence:
         config:
