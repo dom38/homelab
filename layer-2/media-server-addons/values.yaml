@@ -20,6 +20,32 @@ apps:
           size: 6T
           type: pvc
   
+  calibre:
+    enabled: true
+    valuesOverrides:
+      image:
+        tag: develop
+        repository: linuxserver/calibre
+      persistence:
+        config:
+          enabled: true
+          existingClaim: calibre-config-nfs
+          accessMode: ReadWriteOnce
+          size: 6T
+          type: pvc
+        data:
+          enabled: true
+          existingClaim: calibre-nfs
+          accessMode: ReadWriteOnce
+          size: 6T
+          type: pvc
+        torrents:
+          enabled: true
+          existingClaim: calibre-torrent-nfs
+          accessMode: ReadWriteOnce
+          size: 6T
+          type: pvc
+
   delugeOvpn:
     enabled: false
 
@@ -97,6 +123,32 @@ apps:
         torrents:
           enabled: true
           existingClaim: radarr-torrent-nfs
+          accessMode: ReadWriteOnce
+          size: 6T
+          type: pvc
+
+  readarr:
+    enabled: true
+    valuesOverrides:
+      image:
+        tag: latest
+        repository: linuxserver/readarr
+      persistence:
+        config:
+          enabled: true
+          existingClaim: readarr-config-nfs
+          accessMode: ReadWriteOnce
+          size: 6T
+          type: pvc
+        data:
+          enabled: true
+          existingClaim: readarr-nfs
+          accessMode: ReadWriteOnce
+          size: 6T
+          type: pvc
+        torrents:
+          enabled: true
+          existingClaim: readarr-torrent-nfs
           accessMode: ReadWriteOnce
           size: 6T
           type: pvc

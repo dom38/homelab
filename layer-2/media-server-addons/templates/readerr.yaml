@@ -1,0 +1,164 @@
+{{- if .Values.apps.readarr.enabled -}}
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: readarr
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "15"
+spec:
+  project: core
+  source:
+    repoURL: https://k8s-home-lab.github.io/helm-charts/
+    targetRevision: 7.1.2
+    chart: readarr
+    helm:
+      values: |
+        {{- .Values.apps.readarr.valuesOverrides | toYaml | nindent 8 }}
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: readarr
+
+  # Sync policy
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true 
+      allowEmpty: false
+    syncOptions:
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 30s
+  revisionHistoryLimit: 3
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: readarr-ingress
+  namespace: readarr
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/whitelist-source-range: 90.254.235.191/32,192.168.128.1/32
+spec:
+  tls:
+  - hosts:
+    - readarr.k8s.domingo.link
+    secretName: readarr-ingress-tls
+  rules:
+    - host: readarr.k8s.domingo.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: readarr
+                port:
+                  number: 7878
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: readarr-nfs
+  namespace: readarr
+spec:
+  storageClassName: hostpath
+  capacity:
+    storage: 6T
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/raid0/media-server"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: readarr-nfs
+  namespace: readarr
+spec:
+  storageClassName: hostpath
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 6T
+  volumeName: readarr-nfs
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: readarr-config-nfs
+  namespace: readarr
+spec:
+  storageClassName: hostpath
+  capacity:
+    storage: 6T
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/raid0/config/readarr"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: readarr-config-nfs
+  namespace: readarr
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: hostpath
+  resources:
+    requests:
+      storage: 6T
+  volumeName: readarr-config-nfs
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: readarr-torrent-nfs
+  namespace: readarr
+spec:
+  storageClassName: hostpath
+  capacity:
+    storage: 6T
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/raid0/torrents"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: readarr-torrent-nfs
+  namespace: readarr
+spec:
+  storageClassName: hostpath
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 6T
+  volumeName: readarr-torrent-nfs
+
+{{- end -}}
