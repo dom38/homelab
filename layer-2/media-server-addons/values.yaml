@@ -23,6 +23,9 @@ apps:
   calibre:
     enabled: true
     valuesOverrides:
+      service:
+        webserver:
+          enabled: true
       image:
         tag: latest
         repository: linuxserver/calibre
