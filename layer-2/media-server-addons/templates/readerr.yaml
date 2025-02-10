@@ -64,7 +64,7 @@ spec:
               service:
                 name: readarr
                 port:
-                  number: 7878
+                  number: 8787
 
 ---
 
