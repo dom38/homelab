@@ -48,7 +48,7 @@ metadata:
   namespace: nextcloud
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    nginx.ingress.kubernetes.io/whitelist-source-range: 90.254.235.191/32,192.168.128.1/32
+    nginx.ingress.kubernetes.io/whitelist-source-range: 90.254.234.155/32,192.168.128.1/32
     nginx.ingress.kubernetes.io/configuration-snippet: |
       rewrite ^/\.well-known/carddav https://$server_name/remote.php/dav/ redirect;
       rewrite ^/\.well-known/caldav https://$server_name/remote.php/dav/ redirect;

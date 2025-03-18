@@ -48,7 +48,7 @@ metadata:
   namespace: bazarr
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    nginx.ingress.kubernetes.io/whitelist-source-range: 90.254.235.191/32,192.168.128.1/32
+    nginx.ingress.kubernetes.io/whitelist-source-range: 90.254.234.155/32,192.168.128.1/32
 spec:
   tls:
   - hosts:
