@@ -16,7 +16,7 @@ ingress:
   enabled: true
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    nginx.ingress.kubernetes.io/whitelist-source-range: 90.254.234.155/32,192.168.128.1/32
+    nginx.ingress.kubernetes.io/whitelist-source-range: 87.75.106.7/32,192.168.128.1/32
   hosts:
     - host: qbittorrentvpn.k8s.domingo.link
       paths:
