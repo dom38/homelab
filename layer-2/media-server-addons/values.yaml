@@ -103,6 +103,10 @@ apps:
 
   qbittorrentvpn:
     enabled: true
+    valuesOverrides:
+      image:
+        tag: latest
+        repository: trigus42/qbittorrentvpn
 
   radarr:
     enabled: true
